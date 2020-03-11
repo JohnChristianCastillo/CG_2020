@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="utils" targetName="engine" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>typedef</find>
+      <find>nr</find>
+      <find>set</find>
+      <find>color</find>
+      <find>normali</find>
+      <find>rad</find>
+      <find>line</find>
+      <find>this</find>
+      <find>= color</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>image</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectId" id="1YfVuAGnCep5KBNMAo2khqvjbnD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager">
+    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" folderName="New Folder" PROGRAM_PARAMS="line_drawings003.ini" WORKING_DIR="file://$PROJECT_DIR$/../line_drawings" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="utils" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="" />
+      <created>1551630458730</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551630458730</updated>
+      <workItem from="1551630462323" duration="134000" />
+      <workItem from="1551630623467" duration="5924000" />
+      <workItem from="1551645976415" duration="7196000" />
+      <workItem from="1551717797419" duration="1229000" />
+      <workItem from="1554213859086" duration="8442000" />
+      <workItem from="1554721231633" duration="15000" />
+      <workItem from="1557497483672" duration="2182000" />
+      <workItem from="1557507204170" duration="4064000" />
+      <workItem from="1557746827353" duration="3329000" />
+      <workItem from="1557754082491" duration="1199000" />
+      <workItem from="1557875048625" duration="9978000" />
+      <workItem from="1557929522262" duration="3490000" />
+      <workItem from="1558005289953" duration="10655000" />
+      <workItem from="1558015970213" duration="432000" />
+      <workItem from="1558052016840" duration="8847000" />
+      <workItem from="1558093475872" duration="4079000" />
+      <workItem from="1558359586109" duration="6776000" />
+      <workItem from="1558371037399" duration="4889000" />
+      <workItem from="1558387723437" duration="13005000" />
+      <workItem from="1558444625051" duration="18138000" />
+      <workItem from="1558526586029" duration="7531000" />
+      <workItem from="1558563770584" duration="12546000" />
+      <workItem from="1558621358333" duration="9933000" />
+      <workItem from="1558640340750" duration="16517000" />
+      <workItem from="1558658087320" duration="53000" />
+      <workItem from="1558696201456" duration="7731000" />
+      <workItem from="1558713646672" duration="19557000" />
+      <workItem from="1558749684569" duration="11819000" />
+      <workItem from="1558790380529" duration="2752000" />
+      <workItem from="1558841179201" duration="20765000" />
+      <workItem from="1583081523639" duration="4171000" />
+      <workItem from="1583333862787" duration="265000" />
+      <workItem from="1583334154290" duration="165000" />
+      <workItem from="1583334381023" duration="1889000" />
+      <workItem from="1583668381872" duration="6000" />
+      <workItem from="1583924126773" duration="676000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583335308743">
+      <screen x="2560" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335308743" />
+    <state x="3303" y="297" width="424" height="484" key="FileChooserDialogImpl" timestamp="1583335191827">
+      <screen x="2560" y="0" width="1920" height="1080" />
+    </state>
+    <state x="3303" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335191827" />
+    <state width="1874" height="101" key="GridCell.Tab.0.bottom" timestamp="1583337454100">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="101" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
+    <state width="1874" height="101" key="GridCell.Tab.0.center" timestamp="1583337454100">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="101" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
+    <state width="1874" height="101" key="GridCell.Tab.0.left" timestamp="1583337454100">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="101" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
+    <state width="1874" height="101" key="GridCell.Tab.0.right" timestamp="1583337454100">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="101" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
+    <state width="1874" height="172" key="GridCell.Tab.1.bottom" timestamp="1583337454096">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
+    <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
+    <state width="1874" height="172" key="GridCell.Tab.1.center" timestamp="1583337454096">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
+    <state width="1874" height="172" key="GridCell.Tab.1.left" timestamp="1583337454095">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
+    <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454095" />
+    <state width="1874" height="172" key="GridCell.Tab.1.right" timestamp="1583337454096">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1874" height="172" key="GridCell.Tab.1.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
+    <state width="1874" height="172" key="GridCell.Tab.1.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
+    <state x="3009" y="174" key="SettingsEditor" timestamp="1583334078218">
+      <screen x="2560" y="0" width="1920" height="1080" />
+    </state>
+    <state x="3009" y="174" key="SettingsEditor/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334078218" />
+    <state x="867" y="506" key="com.intellij.ide.util.TipDialog" timestamp="1583924173284">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="3176" y="366" key="com.intellij.ide.util.TipDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334387133" />
+    <state x="867" y="506" key="com.intellij.ide.util.TipDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1583924173284" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/easy_image.cc</url>
+          <line>211</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/easy_image.cc</url>
+          <line>376</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/engine.cc</url>
+          <line>255</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="(*this)[y][x]" language="ObjectiveC" />
+        <watch expression="1/Zi" language="ObjectiveC" />
+        <watch expression="1/z" language="ObjectiveC" />
+        <watch expression="y0 + i" language="ObjectiveC" />
+        <watch expression="(unsigned int) round(x0 + (i / m))" language="ObjectiveC" />
+        <watch expression="(unsigned int) round(y0 + m * i)" language="ObjectiveC" />
+        <watch expression="x0+i" language="ObjectiveC" />
+        <watch expression="(*this)[95][516])" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>(*this)[95][516])</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(*this-[516][95])</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(*this[516[95]])</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>1/Zi</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(unsigned int) round(y0 + m * i)</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(unsigned int) round(y0 + m * i</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x0+i</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x0+iµ</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(*this)[x][y]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>y0 + i</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+</project>
