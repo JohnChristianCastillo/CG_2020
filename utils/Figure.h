@@ -26,6 +26,11 @@ public:
     std::vector<Face*> faces;
 
 
+    ~Figure(){
+        for(int i=faces.size()-1; i>=0; --i){
+            delete faces[i];
+        }
+    }
 
     const std::string &getType() const;
 

@@ -19,6 +19,7 @@ typedef std::list<Figure*> Figures3D;
 
 
 
+
 Figures3D threeDFigures;
 
 
@@ -350,6 +351,7 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
         applyTransformation(threeDFigures); //calls "applyTransforation() to every 3Dfigures member
         Lines2D wireLines = doProjection(threeDFigures, eye); //applies the eyepointTransformation to every point of 3DFigures members
                                                              //and generates the lines that are to be drawn
+
         threeDFigures = {};
         return draw2DLines(wireLines, configuration["General"]["size"], bgColor, zBuff);
         //return draw2DLines(wireLines, 2000, bgColor);

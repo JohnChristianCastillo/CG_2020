@@ -11,7 +11,40 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="" />
+    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../line_drawings/gmon.out" beforeDir="false" afterPath="$PROJECT_DIR$/../line_drawings/gmon.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Figure.h" beforeDir="false" afterPath="$PROJECT_DIR$/Figure.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/engine" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cc" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,22 +60,6 @@
         <option value="CMakeLists.txt" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>typedef</find>
-      <find>nr</find>
-      <find>set</find>
-      <find>color</find>
-      <find>normali</find>
-      <find>rad</find>
-      <find>line</find>
-      <find>this</find>
-      <find>= color</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>image</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -116,6 +133,8 @@
       <workItem from="1583334381023" duration="1889000" />
       <workItem from="1583668381872" duration="6000" />
       <workItem from="1583924126773" duration="676000" />
+      <workItem from="1583933578617" duration="2269000" />
+      <workItem from="1584285855637" duration="240000" />
     </task>
     <servers />
   </component>
@@ -131,55 +150,63 @@
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state x="3303" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335191827" />
-    <state width="1874" height="101" key="GridCell.Tab.0.bottom" timestamp="1583337454100">
+    <state width="2447" height="147" key="GridCell.Tab.0.bottom" timestamp="1584286178281">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
-    <state width="1874" height="101" key="GridCell.Tab.0.center" timestamp="1583337454100">
+    <state width="2447" height="147" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
+    <state width="2447" height="147" key="GridCell.Tab.0.center" timestamp="1584286178281">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
-    <state width="1874" height="101" key="GridCell.Tab.0.left" timestamp="1583337454100">
+    <state width="2447" height="147" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
+    <state width="2447" height="147" key="GridCell.Tab.0.left" timestamp="1584286178280">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
-    <state width="1874" height="101" key="GridCell.Tab.0.right" timestamp="1583337454100">
+    <state width="2447" height="147" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178280" />
+    <state width="2447" height="147" key="GridCell.Tab.0.right" timestamp="1584286178281">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
-    <state width="1874" height="172" key="GridCell.Tab.1.bottom" timestamp="1583337454096">
+    <state width="2447" height="147" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
+    <state width="2447" height="243" key="GridCell.Tab.1.bottom" timestamp="1584286177554">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
     <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
-    <state width="1874" height="172" key="GridCell.Tab.1.center" timestamp="1583337454096">
+    <state width="2447" height="243" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177554" />
+    <state width="2447" height="243" key="GridCell.Tab.1.center" timestamp="1584286177553">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
-    <state width="1874" height="172" key="GridCell.Tab.1.left" timestamp="1583337454095">
+    <state width="2447" height="243" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177553" />
+    <state width="2447" height="243" key="GridCell.Tab.1.left" timestamp="1584286177553">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454095" />
-    <state width="1874" height="172" key="GridCell.Tab.1.right" timestamp="1583337454096">
+    <state width="2447" height="243" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177553" />
+    <state width="2447" height="243" key="GridCell.Tab.1.right" timestamp="1584286177554">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1874" height="172" key="GridCell.Tab.1.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
     <state width="1874" height="172" key="GridCell.Tab.1.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
+    <state width="2447" height="243" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177554" />
     <state x="3009" y="174" key="SettingsEditor" timestamp="1583334078218">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state x="3009" y="174" key="SettingsEditor/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334078218" />
-    <state x="867" y="506" key="com.intellij.ide.util.TipDialog" timestamp="1583924173284">
+    <state x="867" y="506" key="com.intellij.ide.util.TipDialog" timestamp="1584285857893">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="3176" y="366" key="com.intellij.ide.util.TipDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334387133" />
-    <state x="867" y="506" key="com.intellij.ide.util.TipDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1583924173284" />
+    <state x="867" y="506" key="com.intellij.ide.util.TipDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1584285857893" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -196,7 +223,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/engine.cc</url>
-          <line>255</line>
+          <line>256</line>
           <option name="timeStamp" value="156" />
         </line-breakpoint>
       </breakpoints>
