@@ -208,14 +208,15 @@ void img::EasyImage::draw_line(unsigned int x0, unsigned int y0, unsigned int x1
 {
     //if((x1 == 577 && y1 == 26)&&(x0 == 25 && y0 == 182)){
     //    color = Color(0,255,255);}
-    if((x1 == 577 && y1 == 26)&&(x0 == 578 && y0 == 540)){
-        color = Color(255,255,255);}
+    //if((x1 == 577 && y1 == 26)&&(x0 == 578 && y0 == 540)){
+    //    color = Color(255,255,255);}
 
-    assert(x0 < this->width);
-	assert(y0 < this->height);
+    assert(x0 < this->width );
+    assert(y0 < this->height);
 
-	assert(x1 < this->width);
-	assert(y1 < this->height);
+    assert(x1 < this->width);
+    assert(y1 < this->height);
+
 	if (x0 == x1)
 	{
 		//special case for x0 == x1

@@ -360,12 +360,13 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
 	return img::EasyImage();
 }
 void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
+    std::cout << "\n\t\t\tAttempting to draw 3DLsystem" << std::endl;
     int point1 = 0;
     double sigmaRad = (l_system.get_angle()*M_PI)/180;
-    Vector3D xyz = Vector3D::point(0,0,0);
+    Vector3D xyz = Vector3D::point(0,0,0);  //
     tempFig->addPoint(xyz);
-    Vector3D H = Vector3D::vector(1,0,0); //x-as
-    Vector3D L = Vector3D::vector(0,1,0); //y-as //links
+    Vector3D H = Vector3D::vector(1,0,0); //x-as   huidige richting van schildpad
+    Vector3D L = Vector3D::vector(0,1,0); //y-as //links    staat loodrecht tov H, L is wat wij links beschouwen
     Vector3D U = Vector3D::vector(0,0,1); //z-as //opwaarts
     std::stack<Vector3D> xyzStack;
     std::stack<Vector3D> Hstack;
@@ -410,48 +411,50 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
     std::vector<std::vector<int>> pointIndexVector;
 
     for(char c: currentString){
-        if(c == '-'){
-           //H = H*rotateZ(l_system.get_angle());
-           //L = L*rotateZ(l_system.get_angle());
+        if(c == '+'){
+
+           //H = H*rotateZ(-l_system.get_angle());
+           //L = L*rotateZ(-l_system.get_angle());
+           //L = -H*sin(sigmaRad) + L*cos(sigmaRad);
             H = Vector3D::vector(H.x,H.y,H.z)*cos(sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*sin(sigmaRad);
-            L = -H*sin(sigmaRad) + L*cos(sigmaRad);
-            //L = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(sigmaRad);
+            L = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(sigmaRad);
+
         }
 
-        else if(c == '+'){
+        else if(c == '-'){
             //auto h = Vector3D::point(H.x,H.y,H.z)*cos((angle*M_PI)/180) + Vector3D::point(L.x,L.y,L.z)*sin((angle*M_PI)/180);
-             //H = H*rotateZ(-l_system.get_angle());
-             //L = L*rotateZ(-l_system.get_angle());
+            //H = H*rotateZ(l_system.get_angle());
+            //L = L*rotateZ(l_system.get_angle());
 
-           H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*sin(-sigmaRad);
-           L = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(-sigmaRad);
+         H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*sin(-sigmaRad);
+         L = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(-sigmaRad);
 
         }
         else if(c == '^'){
             //auto h = Vector3D::point(H.x,H.y,H.z)*cos((angle*M_PI)/180) + Vector3D::point(U.x,U.y,U.z)*sin((angle*M_PI)/180);
-            //H = H*rotateY(l_system.get_angle());
-            //U = U*rotateY(l_system.get_angle());
-           H = Vector3D::vector(H.x,H.y,H.z)*cos(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(sigmaRad);
-           U = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(sigmaRad);
+           //H = H*rotateY(-l_system.get_angle());
+           //U = U*rotateY(-l_system.get_angle());
+            H = Vector3D::vector(H.x,H.y,H.z)*cos(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(sigmaRad);
+            U = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(sigmaRad);
 
         }
         else if(c == '&'){
-          //H = H*rotateY(-l_system.get_angle());
-          //U = U*rotateY(-l_system.get_angle());
-            H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(-sigmaRad);
-            U = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(-sigmaRad);
+          //H = H*rotateY(l_system.get_angle());
+          //U = U*rotateY(l_system.get_angle());
+          H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(-sigmaRad);
+          U = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(-sigmaRad);
 
         }
         else if(c == '\\'){
-           //U = U*rotateX(l_system.get_angle());
-           //L = L*rotateX(l_system.get_angle());
+           //U = U*rotateX(-l_system.get_angle());
+           //L = L*rotateX(-l_system.get_angle());
            L = Vector3D::vector(L.x,L.y,L.z)*cos(sigmaRad) - Vector3D::vector(U.x,U.y,U.z)*sin(sigmaRad);
            U = Vector3D::vector(L.x,L.y,L.z)*sin(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(sigmaRad);
 
         }
         else if(c == '/'){
-          //U = U*rotateX(-l_system.get_angle());
-          //L = L*rotateX(-l_system.get_angle());
+           //U = U*rotateX(l_system.get_angle());
+           //L = L*rotateX(l_system.get_angle());
            L = Vector3D::vector(L.x,L.y,L.z)*cos(-sigmaRad) - Vector3D::vector(U.x,U.y,U.z)*sin(-sigmaRad);
            U = Vector3D::vector(L.x,L.y,L.z)*sin(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(-sigmaRad);
         }
@@ -484,11 +487,11 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
         else if(l_system.draw(c)){
             xyz = Vector3D::point(xyz.x+H.x, xyz.y+H.y, xyz.z+H.z);
             tempFig->addPoint(xyz);
-            if(tempFig->points.size() == 3){
-                //pointIndexVector.push_back({1,4});
-                //pointIndexVector.push_back({0,3});
-                break;
-            }
+            //if(tempFig->points.size() == 3){
+            //    //pointIndexVector.push_back({1,4});
+            //    //pointIndexVector.push_back({0,3});
+            //    break;
+            //}
             pointIndexVector.push_back({point1,int(tempFig->points.size()-1)});
             point1 = tempFig->points.size()-1;
         }
