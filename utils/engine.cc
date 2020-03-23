@@ -416,8 +416,10 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
            //H = H*rotateZ(-l_system.get_angle());
            //L = L*rotateZ(-l_system.get_angle());
            //L = -H*sin(sigmaRad) + L*cos(sigmaRad);
-            H = Vector3D::vector(H.x,H.y,H.z)*cos(sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*sin(sigmaRad);
-            L = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(sigmaRad);
+            Vector3D tempH =Vector3D::vector(H.x,H.y,H.z);
+            Vector3D tempL =Vector3D::vector(L.x,L.y,L.z);
+            H = Vector3D::vector(tempH.x,tempH.y,tempH.z)*cos(sigmaRad) + Vector3D::vector(tempL.x,tempL.y,tempL.z)*sin(sigmaRad);
+            L = -Vector3D::vector(tempH.x,tempH.y,tempH.z)*sin(sigmaRad) + Vector3D::vector(tempL.x,tempL.y,tempL.z)*cos(sigmaRad);
 
         }
 
@@ -425,38 +427,48 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
             //auto h = Vector3D::point(H.x,H.y,H.z)*cos((angle*M_PI)/180) + Vector3D::point(L.x,L.y,L.z)*sin((angle*M_PI)/180);
             //H = H*rotateZ(l_system.get_angle());
             //L = L*rotateZ(l_system.get_angle());
-
-         H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*sin(-sigmaRad);
-         L = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(L.x,L.y,L.z)*cos(-sigmaRad);
+            Vector3D tempH =Vector3D::vector(H.x,H.y,H.z);
+            Vector3D tempL =Vector3D::vector(L.x,L.y,L.z);
+            H = Vector3D::vector(tempH.x,tempH.y,tempH.z)*cos(-sigmaRad) + Vector3D::vector(tempL.x,tempL.y,tempL.z)*sin(-sigmaRad);
+            L = -Vector3D::vector(tempH.x,tempH.y,tempH.z)*sin(-sigmaRad) + Vector3D::vector(tempL.x,tempL.y,tempL.z)*cos(-sigmaRad);
 
         }
         else if(c == '^'){
             //auto h = Vector3D::point(H.x,H.y,H.z)*cos((angle*M_PI)/180) + Vector3D::point(U.x,U.y,U.z)*sin((angle*M_PI)/180);
            //H = H*rotateY(-l_system.get_angle());
            //U = U*rotateY(-l_system.get_angle());
-            H = Vector3D::vector(H.x,H.y,H.z)*cos(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(sigmaRad);
-            U = -Vector3D::vector(H.x,H.y,H.z)*sin(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(sigmaRad);
+            Vector3D tempH =Vector3D::vector(H.x,H.y,H.z);
+            Vector3D tempU =Vector3D::vector(U.x,U.y,U.z);
+            H = Vector3D::vector(tempH.x,tempH.y,tempH.z)*cos(sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*sin(sigmaRad);
+            U = -Vector3D::vector(tempH.x,tempH.y,tempH.z)*sin(sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*cos(sigmaRad);
 
         }
         else if(c == '&'){
           //H = H*rotateY(l_system.get_angle());
           //U = U*rotateY(l_system.get_angle());
-          H = Vector3D::vector(H.x,H.y,H.z)*cos(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*sin(-sigmaRad);
-          U = -Vector3D::vector(H.x,H.y,H.z)*sin(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(-sigmaRad);
+            Vector3D tempH =Vector3D::vector(H.x,H.y,H.z);
+            Vector3D tempU =Vector3D::vector(U.x,U.y,U.z);
+            H = Vector3D::vector(tempH.x,tempH.y,tempH.z)*cos(-sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*sin(-sigmaRad);
+            U = -Vector3D::vector(tempH.x,tempH.y,tempH.z)*sin(-sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*cos(-sigmaRad);
 
         }
         else if(c == '\\'){
            //U = U*rotateX(-l_system.get_angle());
            //L = L*rotateX(-l_system.get_angle());
-           L = Vector3D::vector(L.x,L.y,L.z)*cos(sigmaRad) - Vector3D::vector(U.x,U.y,U.z)*sin(sigmaRad);
-           U = Vector3D::vector(L.x,L.y,L.z)*sin(sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(sigmaRad);
+            Vector3D tempL =Vector3D::vector(L.x,L.y,L.z);
+            Vector3D tempU =Vector3D::vector(U.x,U.y,U.z);
+            L = Vector3D::vector(tempL.x,tempL.y,tempL.z)*cos(sigmaRad) - Vector3D::vector(tempU.x,tempU.y,tempU.z)*sin(sigmaRad);
+            U = Vector3D::vector(tempL.x,tempL.y,tempL.z)*sin(sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*cos(sigmaRad);
 
         }
         else if(c == '/'){
            //U = U*rotateX(l_system.get_angle());
            //L = L*rotateX(l_system.get_angle());
-           L = Vector3D::vector(L.x,L.y,L.z)*cos(-sigmaRad) - Vector3D::vector(U.x,U.y,U.z)*sin(-sigmaRad);
-           U = Vector3D::vector(L.x,L.y,L.z)*sin(-sigmaRad) + Vector3D::vector(U.x,U.y,U.z)*cos(-sigmaRad);
+            Vector3D tempL =Vector3D::vector(L.x,L.y,L.z);
+            Vector3D tempU =Vector3D::vector(U.x,U.y,U.z);
+
+            L = Vector3D::vector(tempL.x,tempL.y,tempL.z)*cos(-sigmaRad) - Vector3D::vector(tempU.x,tempU.y,tempU.z)*sin(-sigmaRad);
+            U = Vector3D::vector(tempL.x,tempL.y,tempL.z)*sin(-sigmaRad) + Vector3D::vector(tempU.x,tempU.y,tempU.z)*cos(-sigmaRad);
         }
         else if(c == '|'){
             //H = H*rotateZ(180);

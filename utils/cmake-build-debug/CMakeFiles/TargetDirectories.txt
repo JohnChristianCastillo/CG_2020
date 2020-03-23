@@ -1,0 +1,7 @@
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/install/strip.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/list_install_components.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/install/local.dir
+/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/install.dir

@@ -13,38 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/engine" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_image.cc" beforeDir="false" afterPath="$PROJECT_DIR$/easy_image.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +50,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wireframes/wireframes018.bmp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../LeetCode" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -145,6 +113,8 @@
       <workItem from="1584791540045" duration="7937000" />
       <workItem from="1584824632777" duration="503000" />
       <workItem from="1584906492507" duration="4215000" />
+      <workItem from="1584983138248" duration="1837000" />
+      <workItem from="1584987027657" duration="731000" />
     </task>
     <servers />
   </component>
@@ -156,41 +126,41 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="800" height="677" key="#Inspections/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584792213504" />
-    <state x="768" y="396" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584908026656">
+    <state x="768" y="396" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584987039247">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="768" y="396" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584908026656" />
+    <state x="768" y="396" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584987039247" />
     <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335308743" />
-    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1584824736933">
+    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1584983167400">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584824736933" />
+    <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584983167400" />
     <state x="3303" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335191827" />
-    <state width="1807" height="179" key="GridCell.Tab.0.bottom" timestamp="1584910844921">
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom" timestamp="1584988067094">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="179" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584910844921" />
+    <state width="1807" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584988067094" />
     <state width="1874" height="172" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
-    <state width="1807" height="179" key="GridCell.Tab.0.center" timestamp="1584910844921">
+    <state width="1807" height="278" key="GridCell.Tab.0.center" timestamp="1584988067094">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="179" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584910844921" />
+    <state width="1807" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584988067094" />
     <state width="1874" height="172" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
-    <state width="1807" height="179" key="GridCell.Tab.0.left" timestamp="1584910844921">
+    <state width="1807" height="278" key="GridCell.Tab.0.left" timestamp="1584988067094">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="179" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584910844921" />
+    <state width="1807" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584988067094" />
     <state width="1874" height="172" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178280" />
-    <state width="1807" height="179" key="GridCell.Tab.0.right" timestamp="1584910844921">
+    <state width="1807" height="278" key="GridCell.Tab.0.right" timestamp="1584988067094">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="179" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584910844921" />
+    <state width="1807" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584988067094" />
     <state width="1874" height="172" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
@@ -230,10 +200,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584824809397" />
-    <state x="662" y="384" key="com.intellij.ide.util.TipDialog" timestamp="1584906492928">
+    <state x="662" y="384" key="com.intellij.ide.util.TipDialog" timestamp="1584987029027">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="662" y="384" key="com.intellij.ide.util.TipDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584906492928" />
+    <state x="662" y="384" key="com.intellij.ide.util.TipDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584987029027" />
     <state x="3176" y="366" key="com.intellij.ide.util.TipDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334387133" />
     <state x="867" y="506" key="com.intellij.ide.util.TipDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1584285857893" />
   </component>
@@ -254,11 +224,6 @@
           <url>file://$PROJECT_DIR$/ExtraFunctions.h</url>
           <line>254</line>
           <option name="timeStamp" value="179" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine.cc</url>
-          <line>487</line>
-          <option name="timeStamp" value="185" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
