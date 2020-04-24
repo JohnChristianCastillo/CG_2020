@@ -23,8 +23,15 @@ typedef std::list<Figure*> Figures3D;
 Figures3D threeDFigures;
 
 
+void draw_zbuf_triag(ZBuffer& zBuffer, img::EasyImage& image,
+                     Vector3D const& A,
+                     Vector3D const& B,
+                     Vector3D const& C,
 
-
+                     double d,
+                     double dx,
+                     double dy,
+                     img::Color color);
 img::EasyImage ColorRectangle(unsigned int width, unsigned int height){
     img::EasyImage image(width, height);
     for(unsigned int i = 0; i < width; i++)
@@ -42,7 +49,7 @@ img::EasyImage ColorRectangle(unsigned int width, unsigned int height){
 
 
 
-img::EasyImage draw2DLines(const Lines2D &lines, const int size = 50, Color color = Color(0,0,0), bool zBuff = false){
+img::EasyImage draw2DLines(const Lines2D &lines, const int size = 50, Color color = Color(0,0,0), std::string zBuff = ""){
 	//Initialize xmin xmax ymin ymax
 	double currentXMax = lines.begin()->getP1().getX();
 	double currentYMax = lines.begin()->getP1().getY();
@@ -105,7 +112,7 @@ img::EasyImage draw2DLines(const Lines2D &lines, const int size = 50, Color colo
             image(i,j).blue = roundToInt(color.getBlue()*255);
         }
     }
-    if(zBuff){
+    if(zBuff == "ZBufferedWireframe" || zBuff == "Zbuffering"){
         ZBuffer zBuffer = ZBuffer(width, height);
         for(const Line2D& line : lines){
             unsigned int p1X = roundToInt(line.getP1().getX()*d+dx);
@@ -115,14 +122,14 @@ img::EasyImage draw2DLines(const Lines2D &lines, const int size = 50, Color colo
             image.draw_zbuf_line(zBuffer, p1X, p1Y, line.z1, p2X, p2Y, line.z2, line.getColor());
         }
     }
-    else if(!zBuff){
+
+    else{
 	    for(const Line2D& line : lines){
 	    	image.draw_line(roundToInt(line.getP1().getX()*d+dx), roundToInt(line.getP1().getY()*d+dy),
 	    			roundToInt(line.getP2().getX()*d+dx), roundToInt(line.getP2().getY()*d+dy), line.getColor());
 
 	    }
     }
-
 	return image;
 
 	//use draw line vna easyimage  image.draw_line
@@ -225,7 +232,6 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig);
 img::EasyImage generate_image(const ini::Configuration &configuration)
 {
     std::string type = configuration["General"]["type"].as_string_or_die();
-
     if(type == "IntroColorRectangle"){
         int width = configuration["ImageProperties"]["width"].as_int_or_die();
         int height = configuration["ImageProperties"]["height"].as_int_or_die();
@@ -237,8 +243,8 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
     }
     else if(type == "2DLSystem"){
         LParser::LSystem2D l_system;
-        std::cout << configuration["2DLSystem"]["inputfile"].as_string_or_die() << std::endl;
-        std::cout << configuration["General"]["size"].as_int_or_die();
+        //std::cout << configuration["2DLSystem"]["inputfile"].as_string_or_die() << std::endl;
+        //std::cout << configuration["General"]["size"].as_int_or_die();
         std::ifstream input_stream(configuration["2DLSystem"]["inputfile"].as_string_or_die());
 
         std::vector<double> backgroundColor = configuration["General"]["backgroundcolor"].as_double_tuple_or_die();
@@ -253,9 +259,7 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
         return draw2DLines(drawLSystem(l_system, lineColorObject), configuration["General"]["size"], backgroundColorObject);
 
     }
-    else if(type == "Wireframe" || type == "ZBufferedWireframe"){
-        bool zBuff = false;
-        if(type == "ZBufferedWireframe"){zBuff = true;}
+    else if(type == "Wireframe" || type == "ZBufferedWireframe" || type == "ZBuffering"){
         std::vector<double> bgColorVect = configuration["General"]["backgroundcolor"].as_double_tuple_or_die();
         std::vector<double> eyeVector = configuration["General"]["eye"].as_double_tuple_or_die();
 
@@ -330,8 +334,8 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
             else if(tempFig->type == "3DLSystem"){
                 LParser::LSystem2D l_system;
                 LParser::LSystem3D l_system3D;
-                std::cout << configuration[figure]["inputfile"].as_string_or_die() << std::endl;
-                std::cout << configuration["General"]["size"].as_int_or_die();
+                //std::cout << configuration[figure]["inputfile"].as_string_or_die() << std::endl;
+                //std::cout << configuration["General"]["size"].as_int_or_die();
                 std::ifstream input_stream(configuration[figure]["inputfile"].as_string_or_die());
 
                 std::vector<double> backgroundColor = configuration["General"]["backgroundcolor"].as_double_tuple_or_die();
@@ -349,18 +353,67 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
         }
         //now that it's parsed we can actually apply the transformations and project it
         applyTransformation(threeDFigures); //calls "applyTransforation() to every 3Dfigures member
-        Lines2D wireLines = doProjection(threeDFigures, eye); //applies the eyepointTransformation to every point of 3DFigures members
-                                                             //and generates the lines that are to be drawn
+        if(type == "ZBuffering"){   //triangulates every face in threeDFigures
+            for(Figure* fig: threeDFigures){
+                std::vector<Face*> replacementFaces;
+                for(Face* f:fig->faces){
+                    std::vector<Face*> tempFaces = triangulate(f);
+                    for(Face* it: tempFaces){
+                        replacementFaces.push_back(it);
+                    }
+                }
+                for(auto del = fig->faces.end()-1; del != fig->faces.begin(); del--){
+                    fig->faces.erase(del);
+                }
+                fig->faces=replacementFaces;
 
+            }
+            Lines2D wireLines = doProjection(threeDFigures, eye);
+
+            //calculate d
+            std::vector<double> startVars = calculateInitial_d_dx_dy(wireLines, configuration["General"]["size"]); // returnt d, dx, dy, width, height
+            /*for(Line2D& l:wireLines){
+                l.p1.x = l.p1.x*startVars[0];
+                l.p1.y = l.p1.y*startVars[0];
+                l.p2.x = l.p1.x*startVars[0];
+                l.p2.y = l.p1.y*startVars[0];
+            }*/
+            ZBuffer zBuffer = ZBuffer(startVars[3], startVars[4]);
+            img::EasyImage image = img::EasyImage(startVars[3], startVars[4]);
+            for(unsigned int i = 0; i < startVars[3]; i++)
+            {
+                for(unsigned int j = 0; j < startVars[4]; j++)
+                {
+                    image(i,j).red = roundToInt(bgColor.getRed()*255);             //round to int is in "ExtraFunctions.h" which is included in color
+                    image(i,j).green = roundToInt(bgColor.getGreen()*255);
+                    image(i,j).blue = roundToInt(bgColor.getBlue()*255);
+                }
+            }
+            for(Figure* fig: threeDFigures) {
+                for (Face *f:fig->faces) {
+                    draw_zbuf_triag(zBuffer, image, fig->points[f->point_indexes[0]],
+                                    fig->points[f->point_indexes[1]],
+                                    fig->points[f->point_indexes[2]],
+                                    startVars[0], startVars[1], startVars[2],
+                                    fig->color.getColor());
+                }
+            }
+            return image;
+        }
+
+        Lines2D wireLines2 = doProjection(threeDFigures, eye); //applies the eyepointTransformation to every point of 3DFigures members
+
+        //and generates the lines that are to be drawn
         threeDFigures = {};
-        return draw2DLines(wireLines, configuration["General"]["size"], bgColor, zBuff);
+        return draw2DLines(wireLines2, configuration["General"]["size"], bgColor, type);
         //return draw2DLines(wireLines, 2000, bgColor);
     }
 
 	return img::EasyImage();
 }
+
 void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
-    std::cout << "\n\t\t\tAttempting to draw 3DLsystem" << std::endl;
+    //std::cout << "\n\t\t\tAttempting to draw 3DLsystem" << std::endl;
     int point1 = 0;
     double sigmaRad = (l_system.get_angle()*M_PI)/180;
     Vector3D xyz = Vector3D::point(0,0,0);  //
@@ -515,6 +568,106 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig){
         tempFig->faces.push_back(tempFace);
     }
 }
+
+void draw_zbuf_triag(ZBuffer& zBuffer, img::EasyImage& image,
+        Vector3D const& A,
+        Vector3D const& B,
+        Vector3D const& C,
+
+        double d,
+        double dx,
+        double dy,
+        img::Color color){
+
+        double xAp = (d*A.x/(-A.z))+dx;
+        double yAp = (d*A.y/(-A.z))+dy;
+        double xBp = (d*B.x/(-B.z))+dx;
+        double yBp = (d*B.y/(-B.z))+dy;
+        double xCp = (d*C.x/(-C.z))+dx;
+        double yCp = (d*C.y/(-C.z))+dy;
+
+
+        int ymin = roundToInt(std::min({yAp, yBp, yCp})+0.5);
+        int ymax = roundToInt(std::max({yAp, yBp, yCp})-0.5);
+
+        std::vector<std::vector<double>> yi_xL_xR;
+
+        while(ymin <= ymax){
+            double xLAB =  std::numeric_limits<double>::infinity();
+            double xLAC =  std::numeric_limits<double>::infinity();
+            double xLBC =  std::numeric_limits<double>::infinity();
+            double xRAB =  -std::numeric_limits<double>::infinity();
+            double xRAC =  -std::numeric_limits<double>::infinity();
+            double xRBC =  -std::numeric_limits<double>::infinity();
+
+            /*
+            returnIntersection(axP,ayP, bxP, byP, ymin);
+            returnIntersection(axP,ayP, cxP, cyP, ymin);
+            returnIntersection(bxP,byP, cxP, cyP, ymin);
+            */
+
+            //find xL xR on line yi for AB  P->A  Q->B
+            if((ymin-yAp)*(ymin-yBp) <=0 && yAp!=yBp){
+                double xi = xBp+(xAp-xBp)*((ymin-yBp)/(yAp-yBp));
+                xLAB = std::min(xi, xBp);
+                xRAB = std::max(xi, xBp);
+            }
+            //find xL xR on line yi for AC  P->A  Q->C
+            if((ymin-yAp)*(ymin-yCp) <=0 && yAp!=yCp){
+                double xi = xCp+(xAp-xCp)*((ymin-yCp)/(yAp-yCp));
+                xLAC = std::min(xi, xCp);
+                xRAC = std::max(xi, xCp);
+            }
+            //find xL xR on line yi for BC  P->B  Q->C
+            if((ymin-yBp)*(ymin-yCp) <=0 && yBp!=yCp){
+                double xi = xCp+(xBp-xCp)*((ymin-yCp)/(yBp-yCp));
+                xLBC = std::min(xi, xCp);
+                xRBC = std::max(xi, xCp);
+            }
+            int xL = roundToInt(std::min({xLAB, xLAC, xLBC})+0.5);
+            int xR = roundToInt(std::max({xRAB, xRAC, xRBC})+0.5);
+            yi_xL_xR.push_back({ymin, xL, xR});
+
+            ymin++;
+        }
+
+        //Calculate 1/z waardes
+        double Xg = (xAp + xBp + xCp)/3;
+        double Yg = (yAp + yBp + yCp)/3;
+        double ZgRecipro = (1.0/(3*A.z)) + (1.0/(3*B.z)) + (1.0/(3*C.z));
+
+
+        //Calculate dzdx en dzdy
+        Vector3D u = B - A;
+        Vector3D v = C - A;
+
+        double w1 = u.y*v.z - u.z*v.y;
+        double w2 = u.z*v.x - u.x*v.z;
+        double w3 = u.x*v.y - u.y*v.x;
+
+        double k  = w1*A.x + w2*A.y + w3*A.z;
+        double dzdx = w1/(-d*k);
+        double dzdy = w2/(-d*k);
+
+
+        ///// HIER MOET 1/z /////
+        for(int i = 0; i<yi_xL_xR.size(); ++i){
+            for(int j = yi_xL_xR[i][1]; j<=(yi_xL_xR[i][2]-yi_xL_xR[i][1]); ++j){
+                double temp1= j;
+                double temp2 = yi_xL_xR[i][0];
+                double temp = yi_xL_xR[i][2]-yi_xL_xR[i][1];
+
+                double zInv = 1.0001*(ZgRecipro) + (j-Xg)*dzdx + (yi_xL_xR[i][0]-Yg)*dzdy;
+                if(zBuffer.allowedByZBuffer(1.0/zInv, j, yi_xL_xR[i][0])){
+                    zBuffer[yi_xL_xR[i][0]][j] = zInv;
+                    image(j,yi_xL_xR[i][0]) = color;
+                }
+            }
+        }
+
+    }
+
+
 
 int main(int argc, char const* argv[])
 {

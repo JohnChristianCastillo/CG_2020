@@ -50,7 +50,7 @@ public:
 
     void addFace(Face* face);
 
-    const Color &getColor() const;
+    const img::Color &getColor() const;
 
     void setColor(Color &vColor);
 

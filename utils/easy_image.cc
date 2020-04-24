@@ -266,7 +266,10 @@ void img::EasyImage::draw_line(unsigned int x0, unsigned int y0, unsigned int x1
 	}
 }
 
-double img::EasyImage::calculateZi(double &z0, double &z1 , int &pixelCountA, int &iVar){
+double img::EasyImage::calculateZi(double &z0, double &z1 , double &pixelCountA, double &iVar){
+    if(iVar==0){
+        int a = 3;
+    }
     return pow((iVar/pixelCountA)/z0 + ((1-(iVar/pixelCountA)))/z1,-1);
 }
 void img::EasyImage::draw_zbuf_line(
@@ -288,8 +291,9 @@ void img::EasyImage::draw_zbuf_line(
     assert(x1 < this->width);
     assert(y1 < this->height);
     //first calculate how much pixels there are in between the two end points
-    int pixelCountA = std::max(std::max(y0, y1)-std::min(y0, y1), std::max(x0, x1)-std::min(x0, x1)); //+1 voor pixels inclusief punten A en B
-    int iVar = pixelCountA;
+    double pixelCountA = std::max(std::max(y0, y1)-std::min(y0, y1), std::max(x0, x1)-std::min(x0, x1))-1; //+1 voor pixels inclusief punten A en B
+    double iVar = pixelCountA;
+    std::cout << iVar << std::endl;
     //for calculating Zi(this is the Z coordinate of the point in between the two points A and B) we use the formula:
     // (i/a)/Za    +  ((1-i/a)/Zb     with  i = a,a-1,....1,0
 
@@ -310,6 +314,7 @@ void img::EasyImage::draw_zbuf_line(
             else{ //we are now in the points in between the two end points; we need to first calculate Zi of this point
                   //after calculating Zi we do the same step as what we've done in the above code
                   double Zi = calculateZi(z0, z1, pixelCountA, iVar);
+                  double temp = 1/Zi;
                   if(zBuffer.allowedByZBuffer(Zi, x0, i)){
                       zBuffer[i][x0] = 1/Zi;
                       (*this)(x0,i) = color;
@@ -347,6 +352,7 @@ void img::EasyImage::draw_zbuf_line(
             //flip points if x1>x0: we want x0 to have the lowest value
             std::swap(x0, x1);
             std::swap(y0, y1);
+            std::swap(z0, z1);
         }
         double m = ((double) y1 - (double) y0) / ((double) x1 - (double) x0); //slope
         if (-1.0 <= m && m <= 1.0)
@@ -368,16 +374,18 @@ void img::EasyImage::draw_zbuf_line(
                 }
                 else{ //if point is between Begin point and End point we need to calculate Zi first
                     double Zi = calculateZi(z0, z1, pixelCountA, iVar);
-                    if(x0 + i == 515 &&(unsigned int) round(y0 + m * i) == 96 && color.red == 255){
-                        //continue;
-                        color = Color(255,255,255);
-                        std::cout << "\n";
-                    }
-                    if(x0 + i == 516 &&(unsigned int) round(y0 + m * i) == 95 && color.red == 255){
-                        //continue;
-                        color = Color(255,255,0);
-                        std::cout << "\n";
-                    }
+                    double temp = 1/Zi;
+
+                    /* if(x0 + i == 515 &&(unsigned int) round(y0 + m * i) == 96 && color.red == 255){
+                         //continue;
+                         color = Color(255,255,255);
+                         std::cout << "\n";
+                     }
+                     if(x0 + i == 516 &&(unsigned int) round(y0 + m * i) == 95 && color.red == 255){
+                         //continue;
+                         color = Color(255,255,0);
+                         std::cout << "\n";
+                     }*/
                     if(zBuffer.allowedByZBuffer(Zi, x0 + i, (unsigned int) round(y0 + m * i))){
                         zBuffer[(unsigned int) round(y0 + m * i)][x0 + i] = 1/Zi;
                         (*this)(x0 + i, (unsigned int) round(y0 + m * i)) = color;
@@ -405,12 +413,15 @@ void img::EasyImage::draw_zbuf_line(
                 }
                 else{//if point is between Begin point and End point we need to calculate Zi first
                     double Zi = calculateZi(z0, z1, pixelCountA, iVar);
+                    double temp = 1/Zi;
+
                     if((unsigned int) round(x0 + (i / m)) == 515 && y0+i == 95 && color.green == 255){
-                        //continue;
+                        continue;
                         color = Color(0,255,255);
                         std::cout << "\n";
                     }
                     if((unsigned int) round(x0 + (i / m)) == 516 && y0+i == 95 && color.green == 255){
+                        continue;
                         std::cout << "\n";
                     }
                     if(zBuffer.allowedByZBuffer(Zi, (unsigned int) round(x0 + (i / m)), y0 + i)){

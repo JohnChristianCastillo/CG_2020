@@ -24,24 +24,12 @@ public:
         return color.getColor();
     }
 
-    void setColor(const Color& color) {
-        this->color = color;
-    }
-
     const Point2D& getP1() const {
         return p1;
     }
 
-    void setP1(const Point2D& p1) {
-        this->p1 = p1;
-    }
-
     const Point2D& getP2() const {
         return p2;
-    }
-
-    void setP2(const Point2D& p2) {
-        this->p2 = p2;
     }
 
 };

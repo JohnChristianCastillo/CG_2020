@@ -12,7 +12,7 @@
 #include "Line2D.h"
 #include "ZBuffer.h"
 #include <list>
-
+#include <algorithm>
 
 typedef std::list<Figure*> Figures3D;
 
@@ -78,7 +78,7 @@ Matrix rotateZ(const double angle, std::string radOrDeg = "Degrees"){
     return Mz;
 }
 Matrix translate(const Vector3D &vector){
-    std::cout << "------------------------BEGIN TRANSLATION---------------------- \n";
+    //std::cout << "------------------------BEGIN TRANSLATION---------------------- \n";
     Matrix tMatrix;
     tMatrix(4,1) = vector.x;
     tMatrix(4,2) = vector.y;
@@ -92,7 +92,7 @@ Matrix translate(const Vector3D &vector){
 
 }
 Matrix scaleFigure(const double scale){
-    std::cout << "------------------------BEGIN SCALING---------------------- \n";
+    //std::cout << "------------------------BEGIN SCALING---------------------- \n";
     Matrix scaleMatrix;
     scaleMatrix(1,1) = scale;
     scaleMatrix(2,2) = scale;
@@ -147,10 +147,10 @@ void applyTransformation(Figures3D &figures3D){
 
 typedef std::list<Line2D> Lines2D;
 
-Point2D doProjection(const Vector3D &point){   // EVENTUEEL , const double d = 1  als parameter toevoegen
+Point2D doProjection(const Vector3D &point, const double d = 1){   // EVENTUEEL , const double d = 1  als parameter toevoegen
     //calculate the 2D x and y coordinates given the 3D x,y and z coordinates
-    double x = point.x/(-point.z); //new x = d*oldX/(-oldZ)
-    double y = point.y/(-point.z); //new y = d*oldy/(-oldZ)
+    double x = d*point.x/(-point.z); //new x = d*oldX/(-oldZ)
+    double y = d*point.y/(-point.z); //new y = d*oldy/(-oldZ)
 
     //make point out of the calculated 2D x and y coordinates
     return Point2D(x, y);
@@ -253,10 +253,10 @@ void createOctahedron(Figure* tempFig){
 
 void createIcosahedron(Figure* tempFig){
     tempFig->addPoint(Vector3D::point(0,0,sqrt(5)/2)); //punt1
-    for(int i = 1;i<6; i++){ //punten 2-6
+    for(int i = 2;i<=6; i++){ //punten 2-6
         tempFig->addPoint(Vector3D::point(cos((i-2)*2*M_PI/5), sin((i-2)*2*M_PI/5), 0.5));
     }
-    for(int i = 6; i < 11;i++){ //punten 7-11
+    for(int i = 7; i <= 11;i++){ //punten 7-11
         tempFig->addPoint(Vector3D::point(cos((M_PI/5)+(i-7)*2*M_PI/5), sin((M_PI/5)+(i-7)*2*M_PI/5), -0.5));
     }
     tempFig->addPoint(Vector3D::point(0,0,-sqrt(5)/2)); //punt12
@@ -283,6 +283,8 @@ void createIcosahedron(Figure* tempFig){
     pointIndexVector.push_back({11,9,8});
     pointIndexVector.push_back({11,10,9});
     pointIndexVector.push_back({11,6,10});
+
+
     for(const auto & i : pointIndexVector){
         Face* tempFace = new Face(i);
         tempFig->faces.push_back(tempFace);
@@ -418,7 +420,11 @@ void createCone(const int n, const double h, Figure* tempFig){
         }
         pointIndexVector.push_back({i,i+1,0});
     }
-
+    std::vector<int> tempv;
+    for(int i = 0; i<n; i++){
+        tempv.push_back(i+1);
+    }
+    pointIndexVector.push_back(tempv);
     for(const auto & i : pointIndexVector){
         Face* tempFace = new Face(i);
         tempFig->faces.push_back(tempFace);
@@ -433,11 +439,21 @@ void createCylinder(const int n, double h, Figure* tempFig){
     //now add the points to be matched
     std::vector<std::vector<int>> pointIndexVector;
     for(int i = 0; i < tempFig->points.size()-1; i++){
-        pointIndexVector.push_back({i,(i+1)});
-        pointIndexVector.push_back({i,(i+2)%int(tempFig->points.size())});
-        pointIndexVector.push_back({i+1,(i+3)%int(tempFig->points.size())});
+        pointIndexVector.push_back({i,(i+1), (i+3)%int(tempFig->points.size()), (i+2)%int(tempFig->points.size())});
+        //pointIndexVector.push_back({i,(i+2)%int(tempFig->points.size())});
+        //pointIndexVector.push_back({i+1,(i+3)%int(tempFig->points.size())});
         i++; //point pairs are currently next to each other
     }
+
+    //oppervlakken
+    std::vector<int> tempv;
+    std::vector<int> tempv2;
+    for(int i = 0; i<n; i++){
+        tempv.push_back(i*2+1);
+        tempv2.push_back(i*2);
+    }
+    pointIndexVector.push_back(tempv2);
+    pointIndexVector.push_back(tempv);
     for(const auto &i: pointIndexVector){
         Face* tempFace = new Face(i);
         tempFig->faces.push_back(tempFace);
@@ -483,4 +499,73 @@ void createTorus(const double r, const double R,  int n,  int m, Figure* tempFig
     }
 }
 
+std::vector<Face*> triangulate(const Face* face){
+    int n=1;
+    std::vector<Face*> tempFaces;
+    while(n<=face->getPointIndexes().size()-2){
+        std::vector<int> indices = {face->point_indexes[0],face->point_indexes[n],face->point_indexes[n+1]};
+        Face* tempFace = new Face(indices);
+        tempFaces.push_back(tempFace);
+        n+=1;
+    }
+    return tempFaces;
+}
+
+std::vector<double> calculateInitial_d_dx_dy(const Lines2D &lines, double size){
+    //Initialize xmin xmax ymin ymax
+    double currentXMax = lines.begin()->getP1().getX();
+    double currentYMax = lines.begin()->getP1().getY();
+
+    double currentXMin = lines.begin()->getP1().getX();
+    double currentYMin = lines.begin()->getP1().getY();
+    for(const Line2D& line : lines){
+        if(line.getP1().getX() > currentXMax){ // find maxX in p1
+            currentXMax = line.getP1().getX();
+        }
+        if(line.getP1().getX() < currentXMin){ // find minX in p1
+            currentXMin = line.getP1().getX();
+        }
+        if(line.getP1().getY() > currentYMax){ // find maxX in p2
+            currentYMax = line.getP1().getY();
+        }
+        if(line.getP1().getY() < currentYMin){ // find minX in p2
+            currentYMin = line.getP1().getY();
+        }
+
+        if(line.getP2().getY() > currentYMax){ // find maxX in p2
+            currentYMax = line.getP2().getY();
+        }
+        if(line.getP2().getY() < currentYMin){ // find minX in p2
+            currentYMin = line.getP2().getY();
+        }
+        if(line.getP2().getX() > currentXMax){ // find maxX in p1
+            currentXMax = line.getP2().getX();
+        }
+        if(line.getP2().getX() < currentXMin){ // find minX in p1
+            currentXMin = line.getP2().getX();
+        }
+    }
+    //vanaf hier xmin xmax ymin ymax bepaald
+    //nu ranges berekenen
+
+    double xRange = currentXMax - currentXMin;
+    double yRange = currentYMax - currentYMin;
+
+    double imageX = size*(xRange/(std::max(xRange,yRange)));
+    double imageY = size*(yRange/(std::max(xRange,yRange)));
+
+    double d = 0.95*(imageX/xRange);
+
+    double DCx = (d*(currentXMin + currentXMax))/2;
+    double DCy = (d*(currentYMin + currentYMax))/2;
+
+    double dx = (imageX/2) - DCx;
+    double dy = (imageY/2) - DCy;
+
+    unsigned int width = roundToInt(imageX);
+    unsigned int height = roundToInt(imageY);
+    img::EasyImage image(width, height);
+
+    return {d, dx, dy, width, height};
+}
 #endif //UTILS_EXTRAFUNCTIONS_H

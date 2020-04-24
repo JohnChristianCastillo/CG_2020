@@ -3,9 +3,10 @@
 
 
 class Point2D{
-	double x;
-	double y;
+
 public:
+    double x;
+    double y;
     Point2D(){};
 	Point2D(double ix, double iy):x(ix), y(iy){}
 

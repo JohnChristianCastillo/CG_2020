@@ -24,7 +24,6 @@ public:
     std::vector <int> point_indexes;
 
     const std::vector<int> &getPointIndexes() const;
-
     void setPointIndexes(const std::vector<int> &pointIndexes);
 };
 

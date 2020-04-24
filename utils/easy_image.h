@@ -242,7 +242,7 @@ namespace img
 
             /**calculates the Z coordinate of current point which is in between 2 end points returns Z
             */
-             double calculateZi(double &z0, double &z1 , int &pixelCount, int &iVar);
+             double calculateZi(double &z0, double &z1 , double &pixelCount, double &iVar);
 
 		private:
 			friend std::istream& operator>>(std::istream& in, EasyImage & image);

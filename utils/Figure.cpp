@@ -37,8 +37,8 @@ void Figure::addFace(Face* face) {
     Figure::faces.push_back(face);
 }
 
-const Color &Figure::getColor() const {
-    return color;
+const img::Color &Figure::getColor() const {
+    return color.getColor();
 }
 
 void Figure::setColor(Color &vColor) {

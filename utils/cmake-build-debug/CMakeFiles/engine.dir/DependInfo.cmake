@@ -7,7 +7,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/reed/Desktop/CG_2020/utils/Color.cc" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o"
   "/home/reed/Desktop/CG_2020/utils/Face.cpp" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o"
   "/home/reed/Desktop/CG_2020/utils/Figure.cpp" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o"
-  "/home/reed/Desktop/CG_2020/utils/Point3D.cpp" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o"
   "/home/reed/Desktop/CG_2020/utils/easy_image.cc" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o"
   "/home/reed/Desktop/CG_2020/utils/engine.cc" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o"
   "/home/reed/Desktop/CG_2020/utils/ini_configuration.cc" "/home/reed/Desktop/CG_2020/utils/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o"
