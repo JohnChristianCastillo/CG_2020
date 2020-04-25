@@ -12,58 +12,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../s0175247.tar.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../s0175247.tar.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExtraFunctions.h" beforeDir="false" afterPath="$PROJECT_DIR$/ExtraFunctions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Face.h" beforeDir="false" afterPath="$PROJECT_DIR$/Face.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Figure.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure.h" beforeDir="false" afterPath="$PROJECT_DIR$/Figure.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Line2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Line2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Point2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Point2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Point3D.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Point3D.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Color.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Face.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Point3D.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/ini_configuration.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/l_parser.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/vector/vector3d.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/engine" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/utils.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_image.cc" beforeDir="false" afterPath="$PROJECT_DIR$/easy_image.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_image.h" beforeDir="false" afterPath="$PROJECT_DIR$/easy_image.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/5_zbuffering.ppt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering001.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering001.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering002.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering002.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering003.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering003.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering004.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering004.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering005.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering005.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering006.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering006.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering007.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering007.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering008.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering008.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering009.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering009.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering010.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering010.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering011.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering011.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering012.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering012.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering013.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering013.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering014.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering014.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering015.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering015.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering016.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering016.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering017.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering017.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering018.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering018.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering019.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering019.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering020.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering020.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering021.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering021.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering022.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering022.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering024.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering024.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering025.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering025.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering026.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering026.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering027.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering027.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering028.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering028.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering029.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering029.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering030.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering030.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering031.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering031.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering032.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering032.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering033.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering033.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering034.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering034.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering035.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering035.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering036.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering036.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering037.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering037.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering038.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering038.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering039.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering039.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering040.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering040.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering041.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering041.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering042.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering042.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering043.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering043.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering044.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering044.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering045.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering045.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering046.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering046.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering047.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering047.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering048.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering048.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering049.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering049.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering050.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering050.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering051.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering051.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering052.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering052.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering053.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering053.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering054.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering054.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering055.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering055.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering056.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering056.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering057.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering057.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering058.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering058.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering059.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering059.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering060.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering060.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering061.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering061.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering062.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering062.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering063.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering063.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering064.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering064.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering065.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering065.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering066.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering066.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering067.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering067.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering068.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering068.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering069.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering069.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering070.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering070.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering071.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering071.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering072.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering072.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering073.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering073.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering074.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering074.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering075.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering075.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering076.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering076.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering077.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering077.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering078.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering078.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering079.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering079.bmp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +115,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -105,7 +143,7 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
-    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" folderName="New Folder" PROGRAM_PARAMS="../../z_buffering3/z_buffering001.ini" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$/.." PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="utils" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" folderName="New Folder" PROGRAM_PARAMS="z_buffering023.ini " REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$/../z_buffering3" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="utils" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -180,7 +218,10 @@
       <workItem from="1587660055333" duration="8943000" />
       <workItem from="1587685097570" duration="6153000" />
       <workItem from="1587692580837" duration="608000" />
-      <workItem from="1587730971651" duration="6058000" />
+      <workItem from="1587730971651" duration="14292000" />
+      <workItem from="1587774651509" duration="4682000" />
+      <workItem from="1587815560190" duration="7299000" />
+      <workItem from="1587831981768" duration="638000" />
     </task>
     <servers />
   </component>
@@ -192,10 +233,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="800" height="677" key="#Inspections/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584792213504" />
-    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587736616191">
+    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587832534475">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736616191" />
+    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832534475" />
     <state x="561" y="309" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587115502562" />
     <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335308743" />
     <state x="499" y="100" width="912" height="904" key="CommitChangelistDialog2" timestamp="1587231711608">
@@ -206,80 +247,80 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="501" height="478" key="DebuggerActiveHint/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587238295435" />
-    <state x="743" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587736290513">
+    <state x="743" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587740862991">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="743" y="317" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736290513" />
+    <state x="743" y="317" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587740862991" />
     <state x="784" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1585415717397" />
     <state x="784" y="317" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586264810234" />
     <state x="3303" y="297" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335191827" />
-    <state width="1874" height="281" key="GridCell.Tab.0.bottom" timestamp="1587736554199">
+    <state width="1874" height="249" key="GridCell.Tab.0.bottom" timestamp="1587832581344">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554199" />
+    <state width="1874" height="249" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832581344" />
     <state width="1874" height="390" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217019257" />
     <state width="3480" height="296" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211886778" />
     <state width="1874" height="172" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
-    <state width="1874" height="281" key="GridCell.Tab.0.center" timestamp="1587736554199">
+    <state width="1874" height="249" key="GridCell.Tab.0.center" timestamp="1587832581344">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554199" />
+    <state width="1874" height="249" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832581344" />
     <state width="1874" height="390" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217019257" />
     <state width="3480" height="296" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211886778" />
     <state width="1874" height="172" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
-    <state width="1874" height="281" key="GridCell.Tab.0.left" timestamp="1587736554199">
+    <state width="1874" height="249" key="GridCell.Tab.0.left" timestamp="1587832581343">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554199" />
+    <state width="1874" height="249" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832581343" />
     <state width="1874" height="390" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217019257" />
     <state width="3480" height="296" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211886778" />
     <state width="1874" height="172" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178280" />
-    <state width="1874" height="281" key="GridCell.Tab.0.right" timestamp="1587736554199">
+    <state width="1874" height="249" key="GridCell.Tab.0.right" timestamp="1587832581344">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554199" />
+    <state width="1874" height="249" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832581344" />
     <state width="1874" height="390" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217019257" />
     <state width="3480" height="296" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211886778" />
     <state width="1874" height="172" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="101" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454100" />
     <state width="2447" height="147" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1584286178281" />
-    <state width="1874" height="281" key="GridCell.Tab.1.bottom" timestamp="1587736554496">
+    <state width="1874" height="624" key="GridCell.Tab.1.bottom" timestamp="1587825703000">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.1.bottom/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554496" />
+    <state width="1874" height="624" key="GridCell.Tab.1.bottom/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587825703000" />
     <state width="1554" height="346" key="GridCell.Tab.1.bottom/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217018911" />
     <state width="3480" height="296" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211887072" />
     <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
     <state width="1874" height="172" key="GridCell.Tab.1.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
     <state width="2447" height="243" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177554" />
-    <state width="1874" height="281" key="GridCell.Tab.1.center" timestamp="1587736554496">
+    <state width="1874" height="624" key="GridCell.Tab.1.center" timestamp="1587825703000">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.1.center/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554496" />
+    <state width="1874" height="624" key="GridCell.Tab.1.center/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587825703000" />
     <state width="1554" height="346" key="GridCell.Tab.1.center/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217018911" />
     <state width="3480" height="296" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211887072" />
     <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="172" key="GridCell.Tab.1.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454096" />
     <state width="2447" height="243" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177553" />
-    <state width="1874" height="281" key="GridCell.Tab.1.left" timestamp="1587736554495">
+    <state width="1874" height="624" key="GridCell.Tab.1.left" timestamp="1587825703000">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.1.left/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554495" />
+    <state width="1874" height="624" key="GridCell.Tab.1.left/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587825703000" />
     <state width="1554" height="346" key="GridCell.Tab.1.left/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217018911" />
     <state width="3480" height="296" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211887072" />
     <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663731" />
     <state width="1874" height="172" key="GridCell.Tab.1.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1583337454095" />
     <state width="2447" height="243" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1584286177553" />
-    <state width="1874" height="281" key="GridCell.Tab.1.right" timestamp="1587736554496">
+    <state width="1874" height="624" key="GridCell.Tab.1.right" timestamp="1587825703000">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="281" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587736554496" />
+    <state width="1874" height="624" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587825703000" />
     <state width="1554" height="346" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1600.900@1920.0.1600.900" timestamp="1587217018911" />
     <state width="3480" height="296" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587211887072" />
     <state width="1874" height="172" key="GridCell.Tab.1.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335663732" />
@@ -322,13 +363,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/engine.cc</url>
-          <line>370</line>
-          <option name="timeStamp" value="17" />
+          <line>356</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/engine.cc</url>
-          <line>233</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/ExtraFunctions.h</url>
+          <line>480</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

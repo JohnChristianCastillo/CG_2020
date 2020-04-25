@@ -212,10 +212,10 @@ void createCube(Figure* tempFig){
 }
 
 void createTetrahedron(Figure* tempFig){
-    tempFig->addPoint(Vector3D::point(1,-1,-1));
+    tempFig->addPoint(Vector3D::point(-1,-1,1));
     tempFig->addPoint(Vector3D::point(-1,1,-1));
     tempFig->addPoint(Vector3D::point(1,1,1));
-    tempFig->addPoint(Vector3D::point(-1,-1,1));
+    tempFig->addPoint(Vector3D::point(1,-1,-1));
     //now add the points to be matched
     std::vector<std::vector<int>> pointIndexVector;
     pointIndexVector.push_back({0,1,2});

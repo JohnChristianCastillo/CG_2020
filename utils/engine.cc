@@ -112,7 +112,7 @@ img::EasyImage draw2DLines(const Lines2D &lines, const int size = 50, Color colo
             image(i,j).blue = roundToInt(color.getBlue()*255);
         }
     }
-    if(zBuff == "ZBufferedWireframe" || zBuff == "Zbuffering"){
+    if(zBuff == "ZBufferedWireframe"){
         ZBuffer zBuffer = ZBuffer(width, height);
         for(const Line2D& line : lines){
             unsigned int p1X = roundToInt(line.getP1().getX()*d+dx);
@@ -366,7 +366,7 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                     fig->faces.erase(del);
                 }
                 fig->faces=replacementFaces;
-
+                replacementFaces = {};
             }
             Lines2D wireLines = doProjection(threeDFigures, eye);
 
@@ -390,14 +390,34 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                 }
             }
             for(Figure* fig: threeDFigures) {
+
+                int count = 0;
                 for (Face *f:fig->faces) {
-                    draw_zbuf_triag(zBuffer, image, fig->points[f->point_indexes[0]],
+                    /*
+                    if(count == 0 or count == 2 or count == 3){
+                        count++;
+                        continue;
+                    }*/
+
+                    draw_zbuf_triag(zBuffer, image,
+                                    fig->points[f->point_indexes[0]],
                                     fig->points[f->point_indexes[1]],
                                     fig->points[f->point_indexes[2]],
                                     startVars[0], startVars[1], startVars[2],
                                     fig->color.getColor());
+                    /*draw_zbuf_triag(zBuffer, image,
+                                    fig->points[2],
+                                    fig->points[1],
+                                    fig->points[0],
+                                    startVars[0], startVars[1], startVars[2],
+                                    fig->color.getColor());
+
+                    count++;
+                    return image;*/
+
                 }
             }
+            threeDFigures = {};
             return image;
         }
 
@@ -600,32 +620,39 @@ void draw_zbuf_triag(ZBuffer& zBuffer, img::EasyImage& image,
             double xRAC =  -std::numeric_limits<double>::infinity();
             double xRBC =  -std::numeric_limits<double>::infinity();
 
-            /*
-            returnIntersection(axP,ayP, bxP, byP, ymin);
-            returnIntersection(axP,ayP, cxP, cyP, ymin);
-            returnIntersection(bxP,byP, cxP, cyP, ymin);
-            */
-
             //find xL xR on line yi for AB  P->A  Q->B
+            auto temp = (ymin-yAp)*(ymin-yBp);
+            auto temp2 = yAp!=yBp;
             if((ymin-yAp)*(ymin-yBp) <=0 && yAp!=yBp){
                 double xi = xBp+(xAp-xBp)*((ymin-yBp)/(yAp-yBp));
-                xLAB = std::min(xi, xBp);
+               /* xLAB = std::min(xi, xBp);
                 xRAB = std::max(xi, xBp);
+                */
+               xLAB = xi;
+               xRAB = xi;
             }
             //find xL xR on line yi for AC  P->A  Q->C
+            auto temp3 = (ymin-yAp)*(ymin-yCp);
+            auto temp4 = yAp!=yCp;
             if((ymin-yAp)*(ymin-yCp) <=0 && yAp!=yCp){
                 double xi = xCp+(xAp-xCp)*((ymin-yCp)/(yAp-yCp));
-                xLAC = std::min(xi, xCp);
-                xRAC = std::max(xi, xCp);
+                //xLAC = std::min(xi, xCp);
+                //xRAC = std::max(xi, xCp);
+                xLAC = xi;
+                xRAC = xi;
             }
             //find xL xR on line yi for BC  P->B  Q->C
+            auto temp5 = (ymin-yBp)*(ymin-yCp);
+            auto temp6 = yBp!=yCp;
             if((ymin-yBp)*(ymin-yCp) <=0 && yBp!=yCp){
                 double xi = xCp+(xBp-xCp)*((ymin-yCp)/(yBp-yCp));
                 xLBC = std::min(xi, xCp);
                 xRBC = std::max(xi, xCp);
+                xLBC = xi;
+                xRBC = xi;
             }
             int xL = roundToInt(std::min({xLAB, xLAC, xLBC})+0.5);
-            int xR = roundToInt(std::max({xRAB, xRAC, xRBC})+0.5);
+            int xR = roundToInt(std::max({xRAB, xRAC, xRBC})-0.5);
             yi_xL_xR.push_back({ymin, xL, xR});
 
             ymin++;
@@ -650,17 +677,14 @@ void draw_zbuf_triag(ZBuffer& zBuffer, img::EasyImage& image,
         double dzdy = w2/(-d*k);
 
 
-        ///// HIER MOET 1/z /////
-        for(int i = 0; i<yi_xL_xR.size(); ++i){
-            for(int j = yi_xL_xR[i][1]; j<=(yi_xL_xR[i][2]-yi_xL_xR[i][1]); ++j){
-                double temp1= j;
-                double temp2 = yi_xL_xR[i][0];
-                double temp = yi_xL_xR[i][2]-yi_xL_xR[i][1];
 
+        for(int i = 0; i<yi_xL_xR.size(); ++i){
+            for(int j = yi_xL_xR[i][1]; j<=yi_xL_xR[i][2]; ++j){
+                auto temp7 = (yi_xL_xR[i][2]);
                 double zInv = 1.0001*(ZgRecipro) + (j-Xg)*dzdx + (yi_xL_xR[i][0]-Yg)*dzdy;
                 if(zBuffer.allowedByZBuffer(1.0/zInv, j, yi_xL_xR[i][0])){
                     zBuffer[yi_xL_xR[i][0]][j] = zInv;
-                    image(j,yi_xL_xR[i][0]) = color;
+                    image(j, yi_xL_xR[i][0]) = color;
                 }
             }
         }
