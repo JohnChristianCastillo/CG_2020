@@ -11,93 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExtraFunctions.h" beforeDir="false" afterPath="$PROJECT_DIR$/ExtraFunctions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/engine" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/5_zbuffering.ppt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering001.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering001.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering002.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering002.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering003.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering003.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering004.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering004.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering005.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering005.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering006.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering006.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering007.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering007.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering008.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering008.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering009.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering009.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering010.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering010.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering011.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering011.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering012.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering012.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering013.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering013.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering014.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering014.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering015.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering015.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering016.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering016.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering017.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering017.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering018.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering018.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering019.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering019.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering020.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering020.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering021.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering021.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering022.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering022.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering024.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering024.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering025.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering025.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering026.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering026.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering027.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering027.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering028.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering028.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering029.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering029.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering030.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering030.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering031.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering031.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering032.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering032.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering033.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering033.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering034.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering034.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering035.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering035.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering036.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering036.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering037.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering037.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering038.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering038.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering039.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering039.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering040.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering040.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering041.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering041.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering042.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering042.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering043.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering043.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering044.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering044.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering045.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering045.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering046.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering046.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering047.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering047.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering048.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering048.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering049.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering049.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering050.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering050.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering051.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering051.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering052.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering052.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering053.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering053.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering054.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering054.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering055.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering055.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering056.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering056.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering057.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering057.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering058.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering058.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering059.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering059.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering060.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering060.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering061.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering061.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering062.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering062.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering063.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering063.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering064.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering064.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering065.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering065.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering066.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering066.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering067.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering067.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering068.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering068.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering069.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering069.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering070.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering070.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering071.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering071.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering072.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering072.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering073.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering073.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering074.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering074.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering075.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering075.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering076.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering076.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering077.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering077.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering078.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering078.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering079.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering079.bmp" afterDir="false" />
-    </list>
+    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +57,7 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunManager">
-    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" folderName="New Folder" PROGRAM_PARAMS="z_buffering023.ini " REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$/../z_buffering3" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="utils" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="engine" type="CMakeRunConfiguration" factoryName="Application" folderName="New Folder" PROGRAM_PARAMS="z_buffering001.ini " REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$/../z_buffering3" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="utils" RUN_TARGET_NAME="engine" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -228,15 +142,19 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;done zbuff 3hoek except torus&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;done zbuff 3hoek except torus&quot;" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="588" y="214" width="800" height="677" key="#Inspections" timestamp="1584792213504">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="800" height="677" key="#Inspections/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584792213504" />
-    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587832534475">
+    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587832753684">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832534475" />
+    <state x="500" y="110" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832753684" />
     <state x="561" y="309" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587115502562" />
     <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335308743" />
     <state x="499" y="100" width="912" height="904" key="CommitChangelistDialog2" timestamp="1587231711608">
