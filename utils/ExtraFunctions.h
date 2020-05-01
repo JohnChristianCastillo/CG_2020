@@ -94,9 +94,9 @@ Matrix translate(const Vector3D &vector){
 Matrix scaleFigure(const double scale){
     //std::cout << "------------------------BEGIN SCALING---------------------- \n";
     Matrix scaleMatrix;
-    scaleMatrix(1,1) = scale;
-    scaleMatrix(2,2) = scale;
-    scaleMatrix(3,3) = scale;
+    scaleMatrix(1,1) = 1/scale;
+    scaleMatrix(2,2) = 1/scale;
+    scaleMatrix(3,3) = 1/scale;
     //for(int i = 0; i < points.size(); i++){
     //    std::cout << "old point: " << points[i].x << ", " << points[i].y << ", " << points[i].z;
     //    points[i] = points[i]*scaleMatrix;
@@ -210,12 +210,47 @@ void createCube(Figure* tempFig){
         tempFig->faces.push_back(tempFace);
     }
 }
+void createMengerSponge(Figure* tempFig, Figures3D threeDObject,int iter){
+    createCube(tempFig);
+    Figures3D tempObjects = {};
+    tempObjects.push_back(tempFig);
+    for(int i = 0; i<iter;++i){
+        for(Figure f:tempObjects){
+            std::vector<Vector3D> points = {};
+            for(int x = -1; x<2;x++){
+                for(int y = -1; y<2;y++){
+                    for(int z = -1; z<2;z++){
+                        double scale = f->scale/3;
+                        points.push_back(Vector3D(x*scale, y*scale, z*scale));
+                    }
+                }
+            }
+            std::vector<std::vector<int>> pointIndexVector;
+            pointIndexVector.push_back({0,4,2,6});
+            pointIndexVector.push_back({4,1,7,2});
+            pointIndexVector.push_back({1,5,3,7});
+            pointIndexVector.push_back({5,0,6,3});
+            pointIndexVector.push_back({6,2,7,3});
+            pointIndexVector.push_back({0,5,1,4});
+            Figure* newFig = new Figure(f->type, f->rotateX,f->rotateY,
+                                        f->rotateZ,
+                                        f->scale,
+                                        f->color,
+                                        f->center,points,{})
+        }
+    }
+}
 
 void createTetrahedron(Figure* tempFig){
     tempFig->addPoint(Vector3D::point(-1,-1,1));
     tempFig->addPoint(Vector3D::point(-1,1,-1));
     tempFig->addPoint(Vector3D::point(1,1,1));
     tempFig->addPoint(Vector3D::point(1,-1,-1));
+    //tempFig->addPoint(Vector3D::point(1,-1,-1));
+    //tempFig->addPoint(Vector3D::point(-1,1,-1));
+    //tempFig->addPoint(Vector3D::point(1,1,1));
+    //tempFig->addPoint(Vector3D::point(-1,-1,1));
+
     //now add the points to be matched
     std::vector<std::vector<int>> pointIndexVector;
     pointIndexVector.push_back({0,1,2});
@@ -468,9 +503,9 @@ void createTorus(const double r, const double R,  int n,  int m, Figure* tempFig
 
     std::vector<std::vector<int>> pointIndexVector;
     for(int i = 0; i < n; i++){ //loop over number of circles
-        double u = 2*i*M_PI/n;
+        double u = 2.0*i*M_PI/n;
         for(int j = 0; j < m; j++){ //loop over number of points in circle
-            double v = 2*j*M_PI/m;
+            double v = 2.0*j*M_PI/m;
             double xuv = (R+r*cos(v))*cos(u);  //met u,v E [0,2pi]
             double yuv = (R+r*cos(v))*sin(u);
             double zuv = r*sin(v);
@@ -568,4 +603,178 @@ std::vector<double> calculateInitial_d_dx_dy(const Lines2D &lines, double size){
 
     return {d, dx, dy, width, height};
 }
+
+void generateFractal(Figure* fig, Figures3D& fractal, const int nr_iterations, const double scale){
+    fractal.push_back(fig);
+    Figures3D threeDFigures2 = {};
+    for(int it = 0; it<nr_iterations; ++it){
+        for(Figure* loopFig:fractal){
+            /*if (loopFig->type.find("Fractal") == std::string::npos) {
+                continue;
+            }*/
+            std::vector<Vector3D> addPoints = {};
+        //make the scaled version of orig figure;
+            for(int p=0; p<loopFig->points.size(); ++p){
+                addPoints.push_back(loopFig->points[p]*scaleFigure(scale));
+            }
+            for(int k = 1; k<=loopFig->points.size(); k++){
+                std::vector<Vector3D> pointsI = {};
+                int j = (k-1)%(addPoints.size());
+                for(int p2 = 0; p2<addPoints.size();++p2){
+                    pointsI.push_back((addPoints[p2]-addPoints[j])+loopFig->points[k-1]);
+                }
+                Figure* tempFig = new Figure();
+                tempFig->points = pointsI;
+                tempFig->faces = loopFig->faces;
+                tempFig->scale = loopFig->scale;
+                tempFig->color = loopFig->color;
+                tempFig->type = loopFig->type;
+                tempFig->center = loopFig->center;
+                tempFig->rotateX = loopFig->rotateX;
+                tempFig->rotateY = loopFig->rotateY;
+                tempFig->rotateZ = loopFig->rotateZ;
+                threeDFigures2.push_back(tempFig);
+            }
+        }
+        fractal=threeDFigures2;
+        threeDFigures2={};
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void createBuckyBall(Figure* tempFig){
+
+    tempFig->addPoint(Vector3D::point( -3.4306, 0.3484, 0.3630)); //punt12
+    tempFig->addPoint(Vector3D::point( -3.1790, 1.1810,-0.7334)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.9160, 0.3690,-1.8427)); //punt12
+    tempFig->addPoint(Vector3D::point( -3.0048,-0.9660,-1.4314)); //punt12
+    tempFig->addPoint(Vector3D::point( -3.3229,-0.9791,-0.0682)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.9449, 0.7442,-2.7732)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.2332, 1.9362,-2.5954)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.4944, 2.7485,-1.4902)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.4680, 2.3700,-0.5585)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.0114, 2.7298, 0.7143)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.2640, 1.9005, 1.8090)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.9745, 0.7074, 1.6331)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.4129,-0.2585, 2.4753)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.3071,-1.5829, 2.0466)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.7627,-1.9425, 0.7730)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.8823,-2.8972, 0.2521)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.5635,-2.8861,-1.1071)); //punt12
+    tempFig->addPoint(Vector3D::point( -2.1254,-1.9193,-1.9490)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.1533,-1.5397,-2.8812)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.0615,-0.2088,-3.2934)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.0879, 1.7218,-3.0046)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.4365, 3.3422,-0.7917)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.7555, 3.3307, 0.5716)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.2619, 1.6696, 2.7586)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.3534, 0.3346, 3.1711)); //punt12
+    tempFig->addPoint(Vector3D::point( -1.1426,-2.3137, 2.3104)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.8795,-3.1267, 1.2011)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.2429,-3.1010,-1.5184)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.0114,-2.2689,-2.6155)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.1936, 0.3941,-3.4362)); //punt12
+    tempFig->addPoint(Vector3D::point(  3.3266, 0.9826, 0.0695)); //punt12
+    tempFig->addPoint(Vector3D::point(  3.0096, 0.9706, 1.4326)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.9177,-0.3640, 1.8443)); //punt12
+    tempFig->addPoint(Vector3D::point(  3.1778,-1.1770, 0.7349)); //punt12
+    tempFig->addPoint(Vector3D::point(  3.4306,-0.3451,-0.3621)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.9473,-0.7475, 2.7721)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.0645, 0.2062, 3.2916)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.1547, 1.5385, 2.8834)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.1280, 1.9203, 1.9528)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.5657, 2.8862, 1.1107)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.8834, 2.9000,-0.2489)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.7651, 1.9463,-0.7707)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.3092, 1.5866,-2.0437)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.4144, 0.2631,-2.4755)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.9758,-0.7031,-1.6328)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.2666,-1.8962,-1.8100)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.0133,-2.7276,-0.7172)); //punt12
+    tempFig->addPoint(Vector3D::point(  2.4693,-2.3670, 0.5560)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.4973,-2.7481, 1.4877)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.2349,-1.9394, 2.5952)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.1917,-0.3936, 3.4362)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.0088, 2.2691, 2.6153)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.2447, 3.1026, 1.5191)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.8815, 3.1269,-1.2000)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.1442, 2.3150,-2.3100)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.3558,-0.3333,-3.1706)); //punt12
+    tempFig->addPoint(Vector3D::point(  1.2640,-1.6687,-2.7595)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.7577,-3.3290,-0.5712)); //punt12
+    tempFig->addPoint(Vector3D::point(  0.4382,-3.3422, 0.7920)); //punt12
+    tempFig->addPoint(Vector3D::point( -0.0856,-1.7214, 3.0049)); //punt12
+
+    //now add the points to be matched
+    std::vector<std::vector<int>> pointIndexVector;
+    for(int i = 0; i < 60; i++){
+        pointIndexVector.push_back({i,i+1,i+2});
+    }
+
+
+
+    for(const auto & i : pointIndexVector){
+        Face* tempFace = new Face(i);
+        tempFig->faces.push_back(tempFace);
+    }
+}
 #endif //UTILS_EXTRAFUNCTIONS_H
+

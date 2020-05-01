@@ -21,6 +21,7 @@ typedef std::list<Figure*> Figures3D;
 
 
 Figures3D threeDFigures;
+Figures3D threeDFractals;
 
 
 void draw_zbuf_triag(ZBuffer& zBuffer, img::EasyImage& image,
@@ -231,6 +232,7 @@ void draw3DLSystem(const LParser::LSystem3D &l_system, Figure* tempFig);
 
 img::EasyImage generate_image(const ini::Configuration &configuration)
 {
+
     std::string type = configuration["General"]["type"].as_string_or_die();
     if(type == "IntroColorRectangle"){
         int width = configuration["ImageProperties"]["width"].as_int_or_die();
@@ -267,10 +269,13 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
         Color bgColor = Color(bgColorVect[0], bgColorVect[1], bgColorVect[2]);
         int nrFigures = configuration["General"]["nrFigures"].as_int_or_die(); //needs to positive whole number
         std::string figureType = configuration["General"]["type"].as_string_or_die();
+
+
         for(int i = 0; i<nrFigures; i++){
             std::string figure = "Figure"+std::to_string(i);
             Figure* tempFig = new Figure();
             tempFig->setType(configuration[figure]["type"].as_string_or_die());
+
             //save Center figure object
             std::vector<double> tempCenter = configuration[figure]["center"].as_double_tuple_or_die();
             tempFig->center = Vector3D::point(tempCenter[0],tempCenter[1],tempCenter[2]);
@@ -331,6 +336,41 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
             else if(tempFig->type == "Torus"){
                 createTorus(configuration[figure]["r"], configuration[figure]["R"], configuration[figure]["n"], configuration[figure]["m"], tempFig);
             }
+            /////////////////FRACTALS///////////////////////////
+            else if(tempFig->type == "FractalTetrahedron"){
+                createTetrahedron(tempFig);
+                generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+
+            }else if(tempFig->type == "FractalOctahedron"){
+                createOctahedron(tempFig);
+                generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+
+            }
+            else if(tempFig->type == "FractalCube"){
+                //tempFig->scale = configuration[figure]["fractalScale"];
+                createCube(tempFig);
+                generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+            }
+            else if(tempFig->type == "FractalIcosahedron"){
+                //tempFig->scale = configuration[figure]["fractalScale"];
+                createIcosahedron(tempFig);
+                generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+            }
+            else if(tempFig->type == "FractalDodecahedron"){
+                //tempFig->scale = configuration[figure]["fractalScale"];
+                createDodecahedron(tempFig);
+                generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+            }
+
+            else if(tempFig->type == "FractalBuckyBall" || tempFig->type == "BuckyBall" || tempFig->type == "MengerSponge"|| tempFig->type == "FractalMengerSponge"){
+                //createBuckyBall(tempFig);
+                //generateFractal(tempFig, threeDFractals, configuration[figure]["nrIterations"].as_int_or_die(),configuration[figure]["fractalScale"].as_double_or_die());
+                return img::EasyImage();
+            }
+
+
+
+
             else if(tempFig->type == "3DLSystem"){
                 LParser::LSystem2D l_system;
                 LParser::LSystem3D l_system3D;
@@ -348,36 +388,39 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
 
                 draw3DLSystem(l_system3D, tempFig);
             }
+
             //add the parsed figure object to 3DFigures
-            threeDFigures.push_back(tempFig);
+            for(Figure* f: threeDFractals){
+                threeDFigures.push_back(f);
+            }
+            threeDFractals = {};
+            if(threeDFigures.empty()){
+                threeDFigures.push_back(tempFig);
+            }
+
         }
+
         //now that it's parsed we can actually apply the transformations and project it
         applyTransformation(threeDFigures); //calls "applyTransforation() to every 3Dfigures member
         if(type == "ZBuffering"){   //triangulates every face in threeDFigures
             for(Figure* fig: threeDFigures){
-                std::vector<Face*> replacementFaces;
+                std::vector<Face*> replacementFaces = {};
                 for(Face* f:fig->faces){
                     std::vector<Face*> tempFaces = triangulate(f);
                     for(Face* it: tempFaces){
                         replacementFaces.push_back(it);
                     }
                 }
-                for(auto del = fig->faces.end()-1; del != fig->faces.begin(); del--){
-                    fig->faces.erase(del);
-                }
+                //for(auto del = fig->faces.end()-1; del != fig->faces.begin(); del--){
+                /*for(Face* f:fig->faces){
+                    delete f;
+                }*/
                 fig->faces=replacementFaces;
-                replacementFaces = {};
+
             }
             Lines2D wireLines = doProjection(threeDFigures, eye);
 
-            //calculate d
             std::vector<double> startVars = calculateInitial_d_dx_dy(wireLines, configuration["General"]["size"]); // returnt d, dx, dy, width, height
-            /*for(Line2D& l:wireLines){
-                l.p1.x = l.p1.x*startVars[0];
-                l.p1.y = l.p1.y*startVars[0];
-                l.p2.x = l.p1.x*startVars[0];
-                l.p2.y = l.p1.y*startVars[0];
-            }*/
             ZBuffer zBuffer = ZBuffer(startVars[3], startVars[4]);
             img::EasyImage image = img::EasyImage(startVars[3], startVars[4]);
             for(unsigned int i = 0; i < startVars[3]; i++)
@@ -393,31 +436,19 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
 
                 int count = 0;
                 for (Face *f:fig->faces) {
-                    /*
-                    if(count == 0 or count == 2 or count == 3){
-                        count++;
-                        continue;
-                    }*/
-
                     draw_zbuf_triag(zBuffer, image,
                                     fig->points[f->point_indexes[0]],
                                     fig->points[f->point_indexes[1]],
                                     fig->points[f->point_indexes[2]],
                                     startVars[0], startVars[1], startVars[2],
                                     fig->color.getColor());
-                    /*draw_zbuf_triag(zBuffer, image,
-                                    fig->points[2],
-                                    fig->points[1],
-                                    fig->points[0],
-                                    startVars[0], startVars[1], startVars[2],
-                                    fig->color.getColor());
-
-                    count++;
-                    return image;*/
-
                 }
             }
+            for(Figure* f:threeDFigures){
+                delete f;
+            }
             threeDFigures = {};
+            threeDFractals = {};
             return image;
         }
 
@@ -425,8 +456,8 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
 
         //and generates the lines that are to be drawn
         threeDFigures = {};
+        threeDFractals = {};
         return draw2DLines(wireLines2, configuration["General"]["size"], bgColor, type);
-        //return draw2DLines(wireLines, 2000, bgColor);
     }
 
 	return img::EasyImage();

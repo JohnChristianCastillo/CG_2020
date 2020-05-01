@@ -6,6 +6,7 @@
 #define UTILS_FIGURE_H
 
 
+#include <utility>
 #include <vector>
 #include "vector/vector3d.h"
 #include "Face.h"
@@ -25,7 +26,9 @@ public:
     std::vector<Vector3D> points;
     std::vector<Face*> faces;
 
-
+    Figure(std::string t, double rx, double ry, double rz, double sc, Color cl, const Vector3D& cen,
+            std::vector<Vector3D> pnts, std::vector<Face*> fcs):type(std::move(t)), rotateX(rx), rotateY(ry), rotateZ(rz), scale(sc),
+            color(cl), center(cen), points(std::move(pnts)), faces(std::move(fcs)){}
     ~Figure(){
         for(int i=faces.size()-1; i>=0; --i){
             delete faces[i];

@@ -206,11 +206,7 @@ img::Color const& img::EasyImage::operator()(unsigned int x, unsigned int y) con
 
 void img::EasyImage::draw_line(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1, Color color)
 {
-    //if((x1 == 577 && y1 == 26)&&(x0 == 25 && y0 == 182)){
-    //    color = Color(0,255,255);}
-    //if((x1 == 577 && y1 == 26)&&(x0 == 578 && y0 == 540)){
-    //    color = Color(255,255,255);}
-
+    std::cout<<x0<< std::endl;
     assert(x0 < this->width );
     assert(y0 < this->height);
 
