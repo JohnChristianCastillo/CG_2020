@@ -11,18 +11,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../s0175247.tar.gz" beforeDir="false" />
+    <list default="true" id="a1653a3b-f256-40e7-a050-266a5eab41ba" name="Default Changelist" comment="&quot;done zbuff 3hoek except torus&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ExtraFunctions.h" beforeDir="false" afterPath="$PROJECT_DIR$/ExtraFunctions.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Figure.h" beforeDir="false" afterPath="$PROJECT_DIR$/Figure.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/easy_image.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/Figure.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/engine.dir/engine.cc.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/engine" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy_image.cc" beforeDir="false" afterPath="$PROJECT_DIR$/easy_image.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine.cc" beforeDir="false" afterPath="$PROJECT_DIR$/engine.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering023.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../z_buffering3/z_buffering023.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../z_buffering3/z_buffering023.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +150,7 @@
       <workItem from="1588090057793" duration="14351000" />
       <workItem from="1588154700212" duration="6933000" />
       <workItem from="1588256162817" duration="3439000" />
-      <workItem from="1588301881424" duration="495000" />
+      <workItem from="1588301881424" duration="1143000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;done zbuff 3hoek except torus&quot;">
       <created>1587832802631</created>
@@ -163,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587832802631</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;done zbuff 3hoek except torus&quot;">
+      <created>1588302417096</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588302417096</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,16 +181,18 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="214" width="800" height="677" key="#Inspections/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584792213504" />
-    <state x="837" y="27" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588183142072">
+    <state x="837" y="27" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588302987130">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="837" y="27" width="1083" height="680" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1588183142072" />
+    <state x="837" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.18.1600.900@0.27.1920.1053" timestamp="1588302987130" />
     <state x="561" y="309" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1587115502562" />
     <state x="2978" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583335308743" />
-    <state x="499" y="100" width="912" height="904" key="CommitChangelistDialog2" timestamp="1587832801595">
+    <state x="499" y="100" width="912" height="886" key="CommitChangelistDialog2" timestamp="1588302422984">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="499" y="100" width="912" height="904" key="CommitChangelistDialog2/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832801595" />
+    <state x="499" y="100" width="912" height="886" key="CommitChangelistDialog2/0.27.1920.1053/1920.18.1600.900@0.27.1920.1053" timestamp="1588302422984" />
     <state width="501" height="478" key="DebuggerActiveHint" timestamp="1587238295435">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -275,18 +280,20 @@
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state x="3009" y="174" key="SettingsEditor/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1583334078218" />
-    <state x="555" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587832812911">
+    <state x="555" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1588302429353">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587832812911" />
+    <state x="555" y="288" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.18.1600.900@0.27.1920.1053" timestamp="1588302429353" />
     <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1584824809397">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053/1920.0.1600.900@67.27.1853.1053" timestamp="1584824809397" />
-    <state x="100" y="125" width="1720" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1587236988939">
+    <state x="100" y="125" width="1720" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1588302895555">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="100" y="125" width="1720" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1920.1053/1920.0.1600.900@0.27.1920.1053" timestamp="1587236988939" />
+    <state x="100" y="125" width="1720" height="854" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.27.1920.1053/1920.18.1600.900@0.27.1920.1053" timestamp="1588302895555" />
     <state x="662" y="384" key="com.intellij.ide.util.TipDialog" timestamp="1586264628756">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

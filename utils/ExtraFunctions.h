@@ -210,36 +210,7 @@ void createCube(Figure* tempFig){
         tempFig->faces.push_back(tempFace);
     }
 }
-void createMengerSponge(Figure* tempFig, Figures3D threeDObject,int iter){
-    createCube(tempFig);
-    Figures3D tempObjects = {};
-    tempObjects.push_back(tempFig);
-    for(int i = 0; i<iter;++i){
-        for(Figure f:tempObjects){
-            std::vector<Vector3D> points = {};
-            for(int x = -1; x<2;x++){
-                for(int y = -1; y<2;y++){
-                    for(int z = -1; z<2;z++){
-                        double scale = f->scale/3;
-                        points.push_back(Vector3D(x*scale, y*scale, z*scale));
-                    }
-                }
-            }
-            std::vector<std::vector<int>> pointIndexVector;
-            pointIndexVector.push_back({0,4,2,6});
-            pointIndexVector.push_back({4,1,7,2});
-            pointIndexVector.push_back({1,5,3,7});
-            pointIndexVector.push_back({5,0,6,3});
-            pointIndexVector.push_back({6,2,7,3});
-            pointIndexVector.push_back({0,5,1,4});
-            Figure* newFig = new Figure(f->type, f->rotateX,f->rotateY,
-                                        f->rotateZ,
-                                        f->scale,
-                                        f->color,
-                                        f->center,points,{})
-        }
-    }
-}
+
 
 void createTetrahedron(Figure* tempFig){
     tempFig->addPoint(Vector3D::point(-1,-1,1));
