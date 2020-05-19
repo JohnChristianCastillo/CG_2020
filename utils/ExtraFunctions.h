@@ -486,21 +486,6 @@ void createTorus(const double r, const double R,  int n,  int m, Figure* tempFig
             double zuv = r*sin(v);
             tempFig->addPoint(Vector3D::point(xuv,yuv,zuv));
         }
-
-        /*if(i>=1){
-            int index = tempFig->points.size()-1;
-            pointIndexVector.push_back({index, index-m+1});
-            for(int k = 0; k < m; k++){ //for every point in the circle
-                if(k==0){
-                    continue;
-                }
-                if(i+1 == n){//this will be the last circle next indices will restart to 0 again
-                    pointIndexVector.push_back({index,index-1, (index-m-1)%(n+1), (index-m)%(n+1)});
-                }
-                pointIndexVector.push_back({index,index-1, index-m-1,index-m});
-                index-=1;
-            }
-        }*/
     }
     for(unsigned int i= 0; i<n; ++i){
         for(unsigned int j = 0; j<m;++j){
@@ -512,7 +497,6 @@ void createTorus(const double r, const double R,  int n,  int m, Figure* tempFig
         }
     }
 
-    pointIndexVector.push_back({0, m-1}); //1st point and last point of first circle;
 
     for(const auto &i: pointIndexVector){
         Face* tempFace = new Face(i);
