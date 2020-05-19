@@ -394,7 +394,7 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                 threeDFigures.push_back(f);
             }
             threeDFractals = {};
-            if(threeDFigures.empty()){
+            if(threeDFigures.empty() or tempFig){
                 threeDFigures.push_back(tempFig);
             }
 

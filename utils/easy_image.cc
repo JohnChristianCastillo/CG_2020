@@ -206,7 +206,7 @@ img::Color const& img::EasyImage::operator()(unsigned int x, unsigned int y) con
 
 void img::EasyImage::draw_line(unsigned int x0, unsigned int y0, unsigned int x1, unsigned int y1, Color color)
 {
-    std::cout<<x0<< std::endl;
+    //std::cout<<x0<< std::endl;
     assert(x0 < this->width );
     assert(y0 < this->height);
 

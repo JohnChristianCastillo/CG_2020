@@ -116,16 +116,7 @@ void toPolar(const Vector3D &eyePoint, double &theta, double &phi, double &r){
     phi = acos(eyePoint.z/r);
 }
 
-Matrix eyePointTrans(const Vector3D &eyepoint){
-    double theta;
-    double phi;
-    double r;
-    toPolar(eyepoint, theta, phi, r);
-    //Matrix V =  rotateZ((M_PI/2)-theta, "radians")*rotateX(phi, "radians")*translate(Vector3D::vector(0,0,r));
-    Matrix V =  rotateZ((-M_PI/2)-theta, "radians")*rotateX(-phi, "radians")*translate(Vector3D::vector(0,0,-r));
 
-    return V;
-}
 void applyTransformation(Figure &figure){
     Matrix transformatieMatrix;
     transformatieMatrix = scaleFigure(figure.scale)*rotateX(figure.rotateX)*rotateY(figure.rotateY)*rotateZ(figure.rotateZ)*translate(figure.center);
@@ -135,7 +126,15 @@ void applyTransformation(Figure &figure){
 }
 
 
+Matrix eyePointTrans(const Vector3D &eyepoint){
+    double theta;
+    double phi;
+    double r;
+    toPolar(eyepoint, theta, phi, r);
+    Matrix V =  rotateZ((-M_PI/2)-theta, "radians")*rotateX(-phi, "radians")*translate(Vector3D::vector(0,0,-r));
 
+    return V;
+}
 typedef std::list<Figure*> Figures3D;
 
 void applyTransformation(Figures3D &figures3D){
@@ -184,6 +183,11 @@ Lines2D doProjection(const Figures3D& figures3D, const Vector3D &eye){
     }
     return lines2D;
 }
+/*
+Lines2D doClipping(const Figures3D& figures3D, const Vector3D &eye, const Vector3D &viewDirection, const double hfov
+                    const double aspectRatio, const double dNear, const double dFar){
+
+}*/
 
 
 ////////vanaf hier Genereren van 3D Figuren
@@ -482,21 +486,32 @@ void createTorus(const double r, const double R,  int n,  int m, Figure* tempFig
             double zuv = r*sin(v);
             tempFig->addPoint(Vector3D::point(xuv,yuv,zuv));
         }
-        if(i>=1){
+
+        /*if(i>=1){
             int index = tempFig->points.size()-1;
             pointIndexVector.push_back({index, index-m+1});
             for(int k = 0; k < m; k++){ //for every point in the circle
                 if(k==0){
                     continue;
                 }
-                if(i == n||i==n-1){//this will be the last circle next indices will restart to 0 again
-                    pointIndexVector.push_back({index,index-1, (index-m-1)%n, (index-m)%n});
+                if(i+1 == n){//this will be the last circle next indices will restart to 0 again
+                    pointIndexVector.push_back({index,index-1, (index-m-1)%(n+1), (index-m)%(n+1)});
                 }
                 pointIndexVector.push_back({index,index-1, index-m-1,index-m});
                 index-=1;
             }
+        }*/
+    }
+    for(unsigned int i= 0; i<n; ++i){
+        for(unsigned int j = 0; j<m;++j){
+            pointIndexVector.push_back({i*m+j,
+                                        (i+1)%n*m+j,
+                                        (i+1)%n*m+(j+1)%m,
+                                        i*m+(j+1)%m
+                                       });
         }
     }
+
     pointIndexVector.push_back({0, m-1}); //1st point and last point of first circle;
 
     for(const auto &i: pointIndexVector){
