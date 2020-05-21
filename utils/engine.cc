@@ -390,13 +390,15 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
             }
 
             //add the parsed figure object to 3DFigures
-            for(Figure* f: threeDFractals){
-                threeDFigures.push_back(f);
+            if(!threeDFractals.empty()){
+                for(Figure* f: threeDFractals){
+                    threeDFigures.push_back(f);
+                }
+                threeDFractals = {};
+                continue;
             }
-            threeDFractals = {};
-            if(threeDFigures.empty() or tempFig){
-                threeDFigures.push_back(tempFig);
-            }
+            threeDFigures.push_back(tempFig);
+
 
         }
 
@@ -411,10 +413,6 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                         replacementFaces.push_back(it);
                     }
                 }
-                //for(auto del = fig->faces.end()-1; del != fig->faces.begin(); del--){
-                /*for(Face* f:fig->faces){
-                    delete f;
-                }*/
                 fig->faces=replacementFaces;
 
             }
@@ -444,6 +442,7 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                                     fig->color.getColor());
                 }
             }
+
             for(Figure* f:threeDFigures){
                 delete f;
             }

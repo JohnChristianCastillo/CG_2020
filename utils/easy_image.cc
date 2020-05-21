@@ -289,7 +289,7 @@ void img::EasyImage::draw_zbuf_line(
     //first calculate how much pixels there are in between the two end points
     double pixelCountA = std::max(std::max(y0, y1)-std::min(y0, y1), std::max(x0, x1)-std::min(x0, x1))-1; //+1 voor pixels inclusief punten A en B
     double iVar = pixelCountA;
-    std::cout << iVar << std::endl;
+    //std::cout << iVar << std::endl;
     //for calculating Zi(this is the Z coordinate of the point in between the two points A and B) we use the formula:
     // (i/a)/Za    +  ((1-i/a)/Zb     with  i = a,a-1,....1,0
 
@@ -409,17 +409,6 @@ void img::EasyImage::draw_zbuf_line(
                 }
                 else{//if point is between Begin point and End point we need to calculate Zi first
                     double Zi = calculateZi(z0, z1, pixelCountA, iVar);
-                    double temp = 1/Zi;
-
-                    if((unsigned int) round(x0 + (i / m)) == 515 && y0+i == 95 && color.green == 255){
-                        continue;
-                        color = Color(0,255,255);
-                        std::cout << "\n";
-                    }
-                    if((unsigned int) round(x0 + (i / m)) == 516 && y0+i == 95 && color.green == 255){
-                        continue;
-                        std::cout << "\n";
-                    }
                     if(zBuffer.allowedByZBuffer(Zi, (unsigned int) round(x0 + (i / m)), y0 + i)){
                         zBuffer[y0 + i][(unsigned int) round(x0 + (i / m))] = 1/Zi;
                         (*this)((unsigned int) round(x0 + (i / m)+1), y0 + i) = color;

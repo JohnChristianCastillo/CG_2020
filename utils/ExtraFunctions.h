@@ -92,16 +92,11 @@ Matrix translate(const Vector3D &vector){
 
 }
 Matrix scaleFigure(const double scale){
-    //std::cout << "------------------------BEGIN SCALING---------------------- \n";
     Matrix scaleMatrix;
-    scaleMatrix(1,1) = 1/scale;
-    scaleMatrix(2,2) = 1/scale;
-    scaleMatrix(3,3) = 1/scale;
-    //for(int i = 0; i < points.size(); i++){
-    //    std::cout << "old point: " << points[i].x << ", " << points[i].y << ", " << points[i].z;
-    //    points[i] = points[i]*scaleMatrix;
-    //    std::cout << "  ------>" << points[i].x << ", " << points[i].y << ", " << points[i].z << std::endl;
-    //}
+    scaleMatrix(1,1) = scale;
+    scaleMatrix(2,2) = scale;
+    scaleMatrix(3,3) = scale;
+
     return scaleMatrix;
 }
 void toPolar(const Vector3D &eyePoint, double &theta, double &phi, double &r){
@@ -585,7 +580,7 @@ void generateFractal(Figure* fig, Figures3D& fractal, const int nr_iterations, c
             std::vector<Vector3D> addPoints = {};
         //make the scaled version of orig figure;
             for(int p=0; p<loopFig->points.size(); ++p){
-                addPoints.push_back(loopFig->points[p]*scaleFigure(scale));
+                addPoints.push_back(loopFig->points[p]*scaleFigure(1/scale));
             }
             for(int k = 1; k<=loopFig->points.size(); k++){
                 std::vector<Vector3D> pointsI = {};
