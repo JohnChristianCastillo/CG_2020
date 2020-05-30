@@ -257,14 +257,12 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
 
         input_stream >> l_system;
         input_stream.close();
-
         return draw2DLines(drawLSystem(l_system, lineColorObject), configuration["General"]["size"], backgroundColorObject);
 
     }
     else if(type == "Wireframe" || type == "ZBufferedWireframe" || type == "ZBuffering"){
         std::vector<double> bgColorVect = configuration["General"]["backgroundcolor"].as_double_tuple_or_die();
         std::vector<double> eyeVector = configuration["General"]["eye"].as_double_tuple_or_die();
-
         Vector3D eye = Vector3D::vector(eyeVector[0], eyeVector[1], eyeVector[2]);
         Color bgColor = Color(bgColorVect[0], bgColorVect[1], bgColorVect[2]);
         int nrFigures = configuration["General"]["nrFigures"].as_int_or_die(); //needs to positive whole number
@@ -416,7 +414,893 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                 fig->faces=replacementFaces;
 
             }
-            Lines2D wireLines = doProjection(threeDFigures, eye);
+            Lines2D wireLines = {};
+            /// after triangulating we want to check if we want to clip it
+            /// check if clipping is on ///
+
+            /// REFLECTION: problem with this approach is that there can be copies of each point,
+            /// but this is to ensure we don't accidentally replace a point for a particular line segment that is also being used by another line segment
+            if(configuration["General"]["clipping"].as_bool_or_default(false)){ //checks if clipping exists, otherwise returns False
+                Matrix V = eyePointTrans(eye, configuration["General"]["viewDirection"].as_double_tuple_or_die(), true);
+                for(const auto& figure : threeDFigures) {
+                    //iterate over every figure points and multiply V (eyepoint transformation to each point)
+                    for (unsigned int i = 0; i < figure->points.size(); i++) {
+                        figure->points[i] = figure->points[i] * V;
+                    }
+                }
+                const double hfov = configuration["General"]["hfov"].as_double_or_die();
+                const double aspectRatio = configuration["General"]["aspectRatio"].as_double_or_die(); //verhouding tss breedte en hoogte
+                const double dNear = configuration["General"]["dNear"].as_double_or_die();
+                const double dFar = configuration["General"]["dFar"].as_double_or_die();
+                //                    /      (0,0,-far)   /
+                //(left, top, -near) /___________/_______/
+                //                  |          B/___/C   |  /
+                //                  |          /  /      | /
+                //                  |_________/_/________|/(right, bottom, -near)
+                //
+                //const double Ahoek = hfov/2;
+                //const Vector3D B = Vector3D::point(0, 0, -dNear);
+                //const Vector3D C = Vector3D::point(right, 0, -dNear);
+                //A = eyepoint   B = (0, 0, -near)  C = (right, 0, -near)  |AB| == near
+                double radianHFOV = (hfov*M_PI)/180;
+                const double right = dNear*tan(radianHFOV/2);                 // |BC| == right
+                const double left = -right;
+                const double top = right/aspectRatio;
+                const double bottom = left/aspectRatio;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////NEAR PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov near vlak
+                double dVal = -dNear;  // z == dval == -dNear
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    std::vector<Vector3D> replacementPoints = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dVal - B.z)/(A.z - B.z);
+                        const double pAC = (dVal - C.z)/(A.z - C.z);
+                        const double pBC = (dVal - C.z)/(B.z - C.z);
+                        //if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+                        const double SzAB = pAB*A.z + (1-pAB)*B.z;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+                        const double SzAC = pAC*A.z + (1-pAC)*C.z;
+
+                        const double SxBC = pBC*B.x + (1.0-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1.0-pBC)*C.y;
+                        const double SzBC = pBC*B.z + (1.0-pBC)*C.z;
+
+                        //////////////if triangle is inside///////////// iff it's less than -near
+                        if(A.z <= dVal && B.z <= dVal && C.z <= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                        //////////////if triangle is outside////////////
+                        else if(A.z > dVal && B.z > dVal && C.z > dVal) {
+                            continue;
+                        }
+                        /////////////2 points outside/////////////////// right is inside, left is outside
+                        //   B ___|__ A     A ___|__ B     B ___|__ C
+                        //    |   | /        |   | /        |   | /
+                        //    |   |/         |   |/         |   |/
+                        //    |  /|          |  /|          |  /|
+                        //   C|/  |         C|/  |         A|/  |
+                        //A inside B and C outside
+
+                        else if(A.z <= dVal && B.z > dVal && C.z > dVal){
+                            //change point B and C such that they are inside and put them in the replacementPoints array
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                        //B inside A and C outside
+                        else if(B.z <= dVal && A.z > dVal && C.z > dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                        //C inside A and B outside
+                        else if(C.z <= dVal && A.z > dVal && B.z > dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal)); //change A
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                        ////////////1 point outside//////////////////// right is outside, left is inside
+                        //   B ___|__ A     A ___|__ B     B ___|__ C
+                        //    |   | /        |   | /        |   | /
+                        //    |   |/         |   |/         |   |/
+                        //    |  /|          |  /|          |  /|
+                        //   C|/  |         C|/  |         A|/  |
+                        //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                        //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.z > dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+                            //add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+                            //push B
+                            //fig->points.push_back(B);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[2]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.z > dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+                            //add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(SxBC, SxBC, dVal));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.z > dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal));
+                            //add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push B
+                            //fig->points.push_back(B);
+                            //push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                    //fig->points = fig->points;
+                }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////FAR PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov far vlak
+                dVal = -dFar;  // z == dval == -dFar
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dVal - B.z)/(A.z - B.z);
+                        const double pAC = (dVal - C.z)/(A.z - C.z);
+                        const double pBC = (dVal - C.z)/(B.z - C.z);
+                        ////if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+
+                        const double SxBC = pBC*B.x + (1-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1-pBC)*C.y;
+
+                        //////////////if triangle is inside/////////////
+                        if(A.z >= dVal && B.z >= dVal && C.z >= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //////////////if triangle is outside////////////
+                        else if(A.z < dVal && B.z < dVal && C.z < dVal) { continue; }
+                            /////////////2 points outside/////////////////// right is inside, left is outside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //A inside B and C outside
+                        else if(A.z >= dVal && B.z < dVal && C.z < dVal){
+                            //change point B and C such that they are inside and put them in the replacementPoints array
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                            //B inside A and C outside
+                        else if(B.z >= dVal && A.z < dVal && C.z < dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //C inside A and B outside
+                        else if(C.z >= dVal && A.z < dVal && B.z < dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal)); //change A
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            ////////////1 point outside//////////////////// right is outside, left is inside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                            //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.z < dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+//add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+//push B
+//fig->points.push_back(B);
+//push C
+//fig->points.push_back(C);
+//push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[2]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.z < dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, SyAB, dVal));
+//add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(SxBC, SxBC, dVal));
+//push A
+//fig->points.push_back(A);
+//push C
+//fig->points.push_back(C);
+//push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.z < dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(SxBC, SyBC, dVal));
+//add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, SyAC, dVal));
+//push A
+//fig->points.push_back(A);
+//push B
+//fig->points.push_back(B);
+//push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////Left PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov near vlak
+                dVal = left;  // x == dval == -dNear
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dNear*B.x + dVal*B.z)/(dVal*(B.z - A.z) + dNear*(B.x-A.x));
+                        const double pAC = (dNear*C.x + dVal*C.z)/(dVal*(C.z - A.z) + dNear*(C.x-A.x));
+                        const double pBC = (dNear*C.x + dVal*C.z)/(dVal*(C.z - B.z) + dNear*(C.x-B.x));
+                        //if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+                        const double SzAB = pAB*A.z + (1-pAB)*B.z;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+                        const double SzAC = pAC*A.z + (1-pAC)*C.z;
+
+                        const double SxBC = pBC*B.x + (1-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1-pBC)*C.y;
+                        const double SzBC = pBC*B.z + (1-pBC)*C.z;
+
+                        //////////////if triangle is inside/////////////
+                        if(A.x >= dVal && B.x >= dVal && C.x >= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //////////////if triangle is outside////////////
+                        else if(A.x < dVal && B.x < dVal && C.x < dVal) { continue; }
+                            /////////////2 points outside/////////////////// right is inside, left is outside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //A inside B and C outside
+                        else if(A.x >= dVal && B.x < dVal && C.x < dVal){
+                            //change point B and C such that they are inside and put them in the fig->points array
+                            //fig->points.push_back(A);
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                            //B inside A and C outside
+                        else if(B.x >= dVal && A.x < dVal && C.x < dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzBC)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //C inside A and B outside
+                        else if(C.x >= dVal && A.x < dVal && B.x < dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC)); //change A
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzBC)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            ////////////1 point outside//////////////////// right is outside, left is inside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                            //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.x < dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            //add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+                            //push B
+                            //fig->points.push_back(B);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[2]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.x < dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            //add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(dVal, SxBC, SzBC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.x < dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzBC));
+                            //add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push B
+                            //fig->points.push_back(B);
+                            //push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////Right PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov right plane
+                dVal = right;  // z == dval == right
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dNear*B.x + dVal*B.z)/(dVal*(B.z - A.z) + dNear*(B.x-A.x));
+                        const double pAC = (dNear*C.x + dVal*C.z)/(dVal*(C.z - A.z) + dNear*(C.x-A.x));
+                        const double pBC = (dNear*C.x + dVal*C.z)/(dVal*(C.z - B.z) + dNear*(C.x-B.x));
+                        //if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+                        const double SzAB = pAB*A.z + (1-pAB)*B.z;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+                        const double SzAC = pAC*A.z + (1-pAC)*C.z;
+
+                        const double SxBC = pBC*B.x + (1-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1-pBC)*C.y;
+                        const double SzBC = pBC*B.z + (1-pBC)*C.z;
+
+                        //////////////if triangle is inside/////////////
+                        if(A.x <= dVal && B.x <= dVal && C.x <= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //////////////if triangle is outside////////////
+                        else if(A.x > dVal && B.x > dVal && C.x > dVal) { continue; }
+                            /////////////2 points outside/////////////////// right is inside, left is outside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //A inside B and C outside
+                        else if(A.x <= dVal && B.x > dVal && C.x > dVal){
+                            //change point B and C such that they are inside and put them in the fig->points array
+                            //fig->points.push_back(A);
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                            //B inside A and C outside
+                        else if(B.x <= dVal && A.x > dVal && C.x > dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzAB)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //C inside A and B outside
+                        else if(C.x <= dVal && A.x > dVal && B.x > dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC)); //change A
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzBC)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            ////////////1 point outside//////////////////// right is outside, left is inside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                            //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.x > dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            //add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+                            //push B
+                            //fig->points.push_back(B);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[2]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.x > dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(dVal, SyAB, SzAB));
+                            //add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(dVal, SxBC, SzBC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.x > dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyBC, SzBC));
+                            //add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(dVal, SyAC, SzAC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push B
+                            //fig->points.push_back(B);
+                            //push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                }
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////Top PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov near vlak
+                dVal = top;  // z == dval == -dNear
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dNear*B.y + dVal*B.z)/(dVal*(B.z - A.z) + dNear*(B.y-A.y));
+                        const double pAC = (dNear*C.y + dVal*C.z)/(dVal*(C.z - A.z) + dNear*(C.y-A.y));
+                        const double pBC = (dNear*C.y + dVal*C.z)/(dVal*(C.z - B.z) + dNear*(C.y-B.y));
+                        //if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+                        const double SzAB = pAB*A.z + (1-pAB)*B.z;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+                        const double SzAC = pAC*A.z + (1-pAC)*C.z;
+
+                        const double SxBC = pBC*B.x + (1-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1-pBC)*C.y;
+                        const double SzBC = pBC*B.z + (1-pBC)*C.z;
+
+                        //////////////if triangle is inside/////////////
+                        if(A.y <= dVal && B.y <= dVal && C.y <= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //////////////if triangle is outside////////////
+                        else if(A.y > dVal && B.y > dVal && C.y > dVal) { continue; }
+                            /////////////2 points outside/////////////////// right is inside, left is outside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //A inside B and C outside
+                        else if(A.y <= dVal && B.y > dVal && C.y > dVal){
+                            //change point B and C such that they are inside and put them in the fig->points array
+                            //fig->points.push_back(A);
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                            //B inside A and C outside
+                        else if(B.y <= dVal && A.y > dVal && C.y > dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //C inside A and B outside
+                        else if(C.y <= dVal && A.y > dVal && B.y > dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC)); //change A
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            ////////////1 point outside//////////////////// right is outside, left is inside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                            //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.y > dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            //add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+                            //push B
+                            //fig->points.push_back(B);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[2]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.y > dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            //add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.y > dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC));
+                            //add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push B
+                            //fig->points.push_back(B);
+                            //push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////Bottom PLANE//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //                  |
+                //      A----------------------B
+                //      |           |          |
+                //      |           |          |
+                //      |           |          |
+                //<____Za___________|__________Zb_________>
+                //                 dval
+                //situatie waar wij knippen tov right plane
+                dVal = bottom;  // z == dval == bottom
+                for(Figure* fig: threeDFigures) {
+                    std::vector<Face*> replacementFaces = {};
+                    const int facesSize = fig->faces.size();
+                    for (Face *f:fig->faces) {
+                        //calculate p
+                        Vector3D& A = fig->points[f->point_indexes[0]];
+                        Vector3D& B = fig->points[f->point_indexes[1]];
+                        Vector3D& C = fig->points[f->point_indexes[2]];
+                        //calculate pAB, pAC, pBC
+                        const double pAB = (dNear*B.y + dVal*B.z)/(dVal*(B.z - A.z) + dNear*(B.y-A.y));
+                        const double pAC = (dNear*C.y + dVal*C.z)/(dVal*(C.z - A.z) + dNear*(C.y-A.y));
+                        const double pBC = (dNear*C.y + dVal*C.z)/(dVal*(C.z - B.z) + dNear*(C.y-B.y));
+                        //if(0>=pAB>=1 or 0>=pBC>=1 or 0>=pAC>=1) continue;
+
+                        //calculate SxAB SyAB | SxAC SyAC | SxBC SyBC  ||THIS SHOULD BE TEMPORARY AND NEEDS TO BE CHANGED ON FINAL VERSION
+                        const double SxAB = pAB*A.x + (1-pAB)*B.x;
+                        const double SyAB = pAB*A.y + (1-pAB)*B.y;
+                        const double SzAB = pAB*A.z + (1-pAB)*B.z;
+
+                        const double SxAC = pAC*A.x + (1-pAC)*C.x;
+                        const double SyAC = pAC*A.y + (1-pAC)*C.y;
+                        const double SzAC = pAC*A.z + (1-pAC)*C.z;
+
+                        const double SxBC = pBC*B.x + (1-pBC)*C.x;
+                        const double SyBC = pBC*B.y + (1-pBC)*C.y;
+                        const double SzBC = pBC*B.z + (1-pBC)*C.z;
+
+                        //////////////if triangle is inside/////////////
+                        if(A.y >= dVal && B.y >= dVal && C.y >= dVal) {
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //////////////if triangle is outside////////////
+                        else if(A.y < dVal && B.y < dVal && C.y < dVal) { continue; }
+                            /////////////2 points outside/////////////////// right is inside, left is outside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //A inside B and C outside
+                        else if(A.y >= dVal && B.y < dVal && C.y < dVal){
+                            //change point B and C such that they are inside and put them in the fig->points array
+                            //fig->points.push_back(A);
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-2, fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+
+                            //B inside A and C outside
+                        else if(B.y >= dVal && A.y < dVal && C.y < dVal){
+                            //change point A and C such that they are inside and put them in the fig->points array
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB)); //change A
+                            //fig->points.push_back(B); //Push B
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC)); //change C
+
+                            f->point_indexes = {fig->points.size()-2, f->point_indexes[1], fig->points.size()-1};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            //C inside A and B outside
+                        else if(C.y >= dVal && A.y < dVal && B.y < dVal){
+                            //change point A and B such that they are inside
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC)); //change A
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC)); //change B
+                            //fig->points.push_back(C); //Push C
+
+                            f->point_indexes = {fig->points.size()-2, fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                            continue;
+                        }
+                            ////////////1 point outside//////////////////// right is outside, left is inside
+                            //   B ___|__ A     A ___|__ B     B ___|__ C
+                            //    |   | /        |   | /        |   | /
+                            //    |   |/         |   |/         |   |/
+                            //    |  /|          |  /|          |  /|
+                            //   C|/  |         C|/  |         A|/  |
+                            //todo: no need to make replacementFaces, just add it directly, in worst case all points are outside and we have to recheck newly added faces
+                            //todo: possible solution, just loop up until last position and ignore newly added faces
+                        else if(A.y < dVal){
+                            //change A such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            //add the second A point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+                            //push B
+                            //fig->points.push_back(B);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its A values are now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({fig->points.size()-2, f->point_indexes[1], f->point_indexes[1]}));
+                            f->point_indexes = {fig->points.size()-1, f->point_indexes[1], f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(B.y < dVal){
+                            //change B such that it becomes one of the TWO new points THIS IS line segment AB
+                            fig->points.push_back(Vector3D::point(SxAB, dVal, SzAB));
+                            //add the second B point between line segment BC
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push C
+                            //fig->points.push_back(C);
+                            //push back a new Face object taking into account that its B value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], fig->points.size()-2, f->point_indexes[2]}));
+                            f->point_indexes = {f->point_indexes[0], fig->points.size()-1, f->point_indexes[2]};
+                            replacementFaces.push_back(f);
+                        }
+                        else if(C.y < dVal){
+                            //change C such that it becomes one of the TWO new points THIS IS line segment AC
+                            fig->points.push_back(Vector3D::point(SxBC, dVal, SzBC));
+                            //add the second C point between line segment AC
+                            fig->points.push_back(Vector3D::point(SxAC, dVal, SzAC));
+                            //push A
+                            //fig->points.push_back(A);
+                            //push B
+                            //fig->points.push_back(B);
+                            //push back a new Face object taking into account that its C value is now the third and fourth last element of the vector fig->points
+                            replacementFaces.push_back(new Face({f->point_indexes[0], f->point_indexes[1], fig->points.size()-1}));
+                            f->point_indexes = {f->point_indexes[0], f->point_indexes[1], fig->points.size()-2};
+                            replacementFaces.push_back(f);
+                        }
+                    }
+                    fig->faces = replacementFaces;
+                }
+                wireLines = doProjection(threeDFigures, eye, configuration["General"]["viewDirection"].as_double_tuple_or_die(), true);
+                return draw2DLines(wireLines, configuration["General"]["size"], bgColor, type);
+
+            }
+
+            //if not clipping
+            else{
+                wireLines = doProjection(threeDFigures, eye);
+            }
 
             std::vector<double> startVars = calculateInitial_d_dx_dy(wireLines, configuration["General"]["size"]); // returnt d, dx, dy, width, height
             ZBuffer zBuffer = ZBuffer(startVars[3], startVars[4]);
@@ -431,7 +1315,6 @@ img::EasyImage generate_image(const ini::Configuration &configuration)
                 }
             }
             for(Figure* fig: threeDFigures) {
-
                 int count = 0;
                 for (Face *f:fig->faces) {
                     draw_zbuf_triag(zBuffer, image,

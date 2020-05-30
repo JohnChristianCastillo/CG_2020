@@ -121,14 +121,23 @@ void applyTransformation(Figure &figure){
 }
 
 
-Matrix eyePointTrans(const Vector3D &eyepoint){
+Matrix eyePointTrans(const Vector3D &eyepoint, const std::vector<double> &viewDirection, const bool vdExists){
     double theta;
     double phi;
     double r;
+    if(vdExists){
+        const Vector3D VD = Vector3D::vector(viewDirection[0],viewDirection[1],viewDirection[2]);
+        toPolar(-VD, theta, phi, r);
+                //camera wordt nieuwe O van coordinaatsysteem
+        auto t = translate(Vector3D::vector(0,0,0)-eyepoint);
+        auto u = rotateZ(-(theta+(M_PI/2)), "radians");
+        auto v = rotateX(-phi, "radians");
+        return translate(Vector3D::vector(0,0,0)-eyepoint)*rotateZ((-M_PI/2)-theta, "radians")*rotateX(-phi, "radians");
+    }
+    //else
     toPolar(eyepoint, theta, phi, r);
-    Matrix V =  rotateZ((-M_PI/2)-theta, "radians")*rotateX(-phi, "radians")*translate(Vector3D::vector(0,0,-r));
+    return rotateZ((-M_PI/2)-theta, "radians")*rotateX(-phi, "radians")*translate(Vector3D::vector(0,0,-r));
 
-    return V;
 }
 typedef std::list<Figure*> Figures3D;
 
@@ -151,14 +160,17 @@ Point2D doProjection(const Vector3D &point, const double d = 1){   // EVENTUEEL 
 
 
 };
-Lines2D doProjection(const Figures3D& figures3D, const Vector3D &eye){
-    Matrix V = eyePointTrans(eye);
+Lines2D doProjection(const Figures3D& figures3D, const Vector3D &eye,
+                     const std::vector<double> &viewDirection = {}, bool vdExists = false){
+    Matrix V = eyePointTrans(eye, viewDirection, vdExists);
     Lines2D lines2D;
+
     for(const auto& figure : figures3D){
         //iterate over every figure points and multiply V (eyepoint transformation to each point)
-        for(unsigned int i = 0; i < figure->points.size(); i++){
+        /*for(unsigned int i = 0; i < figure->points.size(); i++){
             figure->points[i] = figure->points[i]*V;
-        }
+        }*/
+
         //make lines out of every figure in figures3D and put it in Lines2D which will contain all lines in the end
         for(unsigned int j = 0; j<figure->faces.size(); j++){
             std::vector<int> currentPointPair = figure->faces[j]->point_indexes;
@@ -223,10 +235,10 @@ void createTetrahedron(Figure* tempFig){
 
     //now add the points to be matched
     std::vector<std::vector<int>> pointIndexVector;
-    pointIndexVector.push_back({0,1,2});
-    pointIndexVector.push_back({1,3,2});
-    pointIndexVector.push_back({0,3,1});
-    pointIndexVector.push_back({0,2,3});
+    pointIndexVector.push_back({2,1,0});
+    pointIndexVector.push_back({2,3,1});
+    pointIndexVector.push_back({1,3,0});
+    pointIndexVector.push_back({3,2,0});
     for(const auto & i : pointIndexVector){
         Face* tempFace = new Face(i);
         tempFig->faces.push_back(tempFace);
@@ -741,5 +753,6 @@ void createBuckyBall(Figure* tempFig){
         tempFig->faces.push_back(tempFace);
     }
 }
+
 #endif //UTILS_EXTRAFUNCTIONS_H
 
